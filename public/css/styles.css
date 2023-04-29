@@ -5,13 +5,18 @@
   box-sizing: border-box;
 }
 
-body {
-  width: 90%;
-  border: 5px rgb(85, 207, 226) solid;
-  border-radius: 10px;
+
+@media screen and (min-width=300px) {
+  
 }
 
 
 @media screen and (min-width=800px) {
+
+  body {
+    width: 90%;
+    border: 5px rgb(85, 207, 226) solid;
+    border-radius: 10px;
+  }
 
 }
