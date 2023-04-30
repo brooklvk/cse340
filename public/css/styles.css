@@ -162,7 +162,35 @@ nav li {
     margin: 0 20px;
   }
 
-  
+  #grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    margin-top: 100px;
+    align-items: center;
+  }
 
+  #reviews {
+    grid-column: 2/3;
+    grid-row: 1/2;
+  }
+
+  #reviews h2 {
+    margin-top: 0;
+  }
+
+  #upgrades {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+
+  #upgrades div {
+    width: 150px;
+    margin: 10px;
+  }
+
+  #upgrades img {
+    height: 50px;
+  }
 
 }
