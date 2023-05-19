@@ -32,6 +32,9 @@ app.use(require("./routes/static"))
 // });
 app.get("/", baseController.buildHome)
 
+// Inventory routes
+app.use("/inv", require("./routes/inventoryRoute"))
+
 /* ******************************************
  * Server host name and 
  Values from .env(environment) file
