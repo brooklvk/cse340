@@ -7,7 +7,7 @@ const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
 const app = express()
 const baseController = require("./controllers/baseController")
-const utilities = require("./utilities/")//
+const utilities = require("./utilities/")
 
 /* ******************************************
  * View Engine and Templates
@@ -23,27 +23,28 @@ app.set("layout", "./layouts/layout") // not at views root
 
 app.use(require("./routes/static"))
 
-//Index route 
-// app.get("/", function(req, res){
-//   res.render("index", {title: "Home"})
-// });
-app.get("/", baseController.buildHome)
+// Index route
+app.get("/", utilities.handleErrors(baseController.buildHome))
 
 // Inventory routes
 app.use("/inv", require("./routes/inventoryRoute"))
 
-//file not found 
+// File Not Found Route - must be last route in list
+app.use(async (req, res, next) => {
+  next({status: 404, message: "Sorry, we appear to have lost that page."})
+})
 
 /* ***********************
 * Express Error Handler
 * Place after all other middleware
 *************************/
 app.use(async (err, req, res, next) => {
-  let nav = await utilities.getNav()//make utilities in scope 
+  let nav = await utilities.getNav()
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
+  if(err.status == 404){ message = err.message} else {message = 'Oops. We crashed.'}
   res.render("errors/error", {
     title: err.status || 'Server Error',
-    message: err.message,
+    message,
     nav
   })
 })
@@ -59,7 +60,7 @@ const port = process.env.PORT
 * Log statement to confirm server operation
 * *********************** */
 app.listen(port, () => {
-console.log(`trial app listening on ${host}:${port}`)
+console.log(`app listening on ${host}:${port}`)
 });
 
 
