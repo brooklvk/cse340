@@ -62,18 +62,3 @@ const port = process.env.PORT
 app.listen(port, () => {
 console.log(`app listening on ${host}:${port}`)
 });
-
-
-
-
-
-
-// in invController.js
-
-// const classMode1 = data1[0].inv_model
-// const classMake = data[0].inv_make 
-// res.render("filepath", {
-//   title: classMake + " " + classMode1, 
-//   nav, 
-//   grid, 
-// })
