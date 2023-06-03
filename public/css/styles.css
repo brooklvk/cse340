@@ -37,6 +37,9 @@ header a {
 
 nav {
   background-color: rgb(28, 28, 41);
+}
+
+nav a {
   color: white;
 }
 
