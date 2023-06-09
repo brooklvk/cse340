@@ -9,6 +9,15 @@
 <!-- A message -->
 <%- messages() %>
 
+<!-- Display any errors. -->
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+
 <!-- Form for login and link to registration. -->
 <form id="loginForm" action="/account/login" method="post">
   <fieldset>
