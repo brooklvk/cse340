@@ -64,9 +64,11 @@ invCont.buildAddClassification = async function (req, res, next) {
 * *************************************** */
 invCont.buildAddInventory = async function (req, res, next) {
   let nav = await utilities.getNav()
+  let options = await utilities.getClassificationOption()
   res.render("./inventory/add-inventory", {
     title: "Add Inventory",
     nav,
+    options,
     errors: null,
   })
 }
@@ -77,7 +79,7 @@ invCont.buildAddInventory = async function (req, res, next) {
 invCont.enterClassification = async function (req, res) {
   const { classification_name } = req.body
 
-  const classificationResult = await managementModel.enterClassification(classification_name)
+  const classificationResult = await invModel.enterClassification(classification_name)
   let nav = await utilities.getNav()
 
   if (classificationResult) {
@@ -87,8 +89,7 @@ invCont.enterClassification = async function (req, res) {
         )
         res.status(201).render("./inventory/management", {
           title: "Management",
-          nav,
-          errors: null,
+          nav
         })
       } else {
         req.flash("notice", "Sorry, the new classification failed.")
@@ -116,8 +117,7 @@ invCont.enterInventory = async function (req, res) {
         )
         res.status(201).render("./inventory/management", {
           title: "Management",
-          nav,
-          errors: null,
+          nav
         })
       } else {
         req.flash("notice", "Sorry, the new item failed.")
