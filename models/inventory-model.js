@@ -78,18 +78,5 @@ async function enterInventory(inv_make, inv_model, inv_year, inv_description, in
   }
 }
 
-/* **********************
-*   Check for existing inventory
-* ********************* */
-// async function checkExistingInventory(inv_id){
-//   try {
-//     const sql = "SELECT * FROM inventory WHERE inv_id = $1"
-//     const inventory = await pool.query(sql, [inv_id])
-//     return inventory.rowCount
-//   } catch (error) {
-//     return error.message
-//   }
-// }
-
 
 module.exports = {getClassifications, getInventoryByClassificationId, getInventoryDetailsByInventoryId, enterClassification, enterInventory};

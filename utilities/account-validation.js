@@ -29,7 +29,7 @@ validate.registrationRules = () => {
       .custom(async (account_email) => {
       const emailExists = await accountModel.checkExistingEmail(account_email)
       if (emailExists){
-        throw new Error("Email exists. Please log in or use different email")
+        throw new Error("Email exists. Please log in or use different email.")
       }
     }),
   
