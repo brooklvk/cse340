@@ -11,13 +11,13 @@
 <%- message %>
 
 <!-- Display any errors. ????-->
-<!-- <% if (errors) { %>
+<% if (errors) { %>
     <ul class="notice">
    <% errors.array().forEach(error => { %>
      <li><%= error.msg %></li>
   <%  }) %>
    </ul>
-  <% } %>-->
+  <% } %>
 
 <form id="addInventoryForm" action="/inventory/add-inventory" method="post">
     <fieldset>
@@ -30,13 +30,8 @@
         <label>Price: <input name="inv_price" type="number" value="<% locals.inv_price %>" required></label>
         <label>Miles: <input name="inv_miles" type="number" value="<% locals.inv_miles %>" required></label>
         <label>Color: <input name="inv_color" type="text" value="<% locals.inv_color %>" required></label>
-        <label>Classification: <select name="classification_id" value="classification_id">
-            <option value="1">Custom</option>
-            <option value="2">Sport</option>
-            <option value="3">SUV</option>
-            <option value="4">Truck</option>
-            <option value="5">Sedan</option>
-        </select></label>
+        <label>Classification:</label>
+        <%- options %>
         <button type="submit">ADD INVENTORY ITEM</button>
     </fieldset>
 </form>

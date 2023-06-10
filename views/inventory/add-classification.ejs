@@ -7,17 +7,17 @@
     } %>
 
     
-<!-- A message - syntax?-->
+<!-- A message -->
 <%- message %>
 
-<!-- Display any errors. ????-->
-<!-- <% if (errors) { %>
+<!-- Display any errors. -->
+<% if (errors) { %>
     <ul class="notice">
    <% errors.array().forEach(error => { %>
      <li><%= error.msg %></li>
   <%  }) %>
    </ul>
-  <% } %>-->
+  <% } %>
 
 <form id="addClassificationForm" action="/inventory/add-classification" method="post">
     <fieldset>

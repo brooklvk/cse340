@@ -88,6 +88,15 @@ Util.buildDetailGrid = async function(data) {
   return detailGrid
 }
 
+Util.getClassificationOption = async function() {
+  let data = await invModel.getClassifications()
+  let opt = '<select name="classification_id"'
+  opt += ''
+  data.rows.forEach((row) => {
+    opt += row
+  })
+}
+
 
 /* ****************************************
  * Middleware For Handling Errors
