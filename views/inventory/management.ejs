@@ -5,17 +5,14 @@
       res.redirect('/')
     } %>
 
-    
 <!-- A message -->
-<%- messages() %>
+<%- message %>
 
-<!-- Display any errors. -->
-<% if (errors) { %>
-    <ul class="notice">
-   <% errors.array().forEach(error => { %>
-     <li><%= error.msg %></li>
-  <%  }) %>
-   </ul>
-  <% } %>
+<!-- Add new classification view -->
+<%- classificationResult %>
 
-  
+<!-- Add new inventory item view -->
+<%- inventoryResult %>
+
+<!-- ROUTE TO GET TO THIS PAGE:
+localhost:5500/inv/management  -->

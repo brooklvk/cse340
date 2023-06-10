@@ -1,0 +1,28 @@
+
+<!-- A content heading -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+    
+<!-- A message - syntax?-->
+<%- message %>
+
+<!-- Display any errors. ????-->
+<!-- <% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>-->
+
+<form id="addClassificationForm" action="/inventory/add-classification" method="post">
+    <fieldset>
+        <label>Classification name: <input name="classification_name" type="text" value="<%= locals.classification_name %>" required></label>
+        <small>Classification name cannot contain spaces, punctuation or any special characters.</small>
+        <button type="submit">ADD CLASSIFICATION</button>
+    </fieldset>
+</form>
