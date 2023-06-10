@@ -133,4 +133,4 @@ invCont.enterInventory = async function (req, res) {
 
 invCont.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
 
-module.exports = invCont
+module.exports = invCont 

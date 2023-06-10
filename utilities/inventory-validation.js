@@ -6,7 +6,7 @@ const { body, validationResult } = require("express-validator")
 const validate = {}
 
 // Classification data validation rules 
-validate.addClassificationRules = () => {
+validate.enterClassificationRules = () => {
     return [
         body("classification_name")
         .trim()
@@ -40,7 +40,7 @@ validate.checkClassificationData = async (req, res, next) => {
 }
 
 // Inventory data validation rules 
-validate.addInventoryRules = () => {
+validate.enterInventoryRules = () => {
     return [
         body("inv_make")
         .trim()
