@@ -46,7 +46,6 @@ app.set("layout", "./layouts/layout") // not at views root
 /* ******************************************
  * Routes 
  * ***************************************** */
-// app.get("/", (req, res) => {res.send("Welcome home!")});
 
 app.use(require("./routes/static"))
 
@@ -92,3 +91,10 @@ const port = process.env.PORT
 app.listen(port, () => {
 console.log(`app listening on ${host}:${port}`)
 });
+
+
+
+// WHAT TO DO:
+// uncomment (and test) so cannot add same classification name 
+// make inventory form sticky 
+// check assn 

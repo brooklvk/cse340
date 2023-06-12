@@ -46,7 +46,6 @@ invCont.buildManagement = async function (req, res, next) {
   })
 }
 
-
 /* ****************************************
 *  Deliver add classification view
 * *************************************** */
@@ -87,9 +86,10 @@ invCont.enterClassification = async function (req, res) {
           "notice",
           `Congratulations, you\'ve entered the new classification ${classification_name}.`
         )
-        res.status(201).render("./inventory/management", {
-          title: "Management",
-          nav
+        res.status(201).render("./inventory/add-classification", {
+          title: "Add Classification",
+          nav,
+          errors: null,
         })
       } else {
         req.flash("notice", "Sorry, the new classification failed.")
@@ -115,9 +115,12 @@ invCont.enterInventory = async function (req, res) {
           "notice",
           `Congratulations, you\'ve entered the new item ${inv_make} ${inv_model}.`
         )
-        res.status(201).render("./inventory/management", {
-          title: "Management",
-          nav
+        let options = await utilities.getClassificationOption()
+        res.status(201).render("./inventory/add-inventory", {
+          title: "Add Inventory",
+          nav,
+          options,
+          errors: null,
         })
       } else {
         req.flash("notice", "Sorry, the new item failed.")
