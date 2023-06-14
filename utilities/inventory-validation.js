@@ -1,7 +1,7 @@
 
 const utilities = require(".")
 const { body, validationResult } = require("express-validator")
-// const invModel = require("../models/inventory-model")
+const invModel = require("../models/inventory-model")
 
 const validate = {}
 
@@ -11,13 +11,13 @@ validate.enterClassificationRules = () => {
         body("classification_name")
         .trim()
         .isLength({min: 2, max: 20})
-        .withMessage("Name must be between 2 and 20 characters."),
-        // .custom(async (classification_name) => {
-        //     const exists = await invModel.checkExistingClassification(classification_name)
-        //     if (exists){
-        //       throw new Error("Classification exists already. Try again.")
-        //     }
-        //   })
+        .withMessage("Name must be between 2 and 20 characters.")
+        .custom(async (classification_name) => {
+            const exists = await invModel.checkExistingClassification(classification_name)
+            if (exists){
+              throw new Error("Classification exists already. Try again.")
+            }
+          }),
     ]
 }
 

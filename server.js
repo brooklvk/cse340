@@ -92,9 +92,3 @@ app.listen(port, () => {
 console.log(`app listening on ${host}:${port}`)
 });
 
-
-
-// WHAT TO DO:
-// uncomment (and test) so cannot add same classification name 
-// make inventory form sticky 
-// check assn 
