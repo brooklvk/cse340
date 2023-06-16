@@ -36,6 +36,8 @@ app.use(function(req, res, next){
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
+app.use(cookieParser())
+
 /* ******************************************
  * View Engine and Templates
  * ***************************************** */
@@ -92,3 +94,10 @@ app.listen(port, () => {
 console.log(`app listening on ${host}:${port}`)
 });
 
+
+
+
+
+//Obj 5 The validation does not prohibit allowing classification names to have a space. It should. The server-side validation for new inventory does not check for year, classification, or description. The messages should be displayed in the inventory management view after adding a new inventory item.
+
+//Obj 1 CSS needs to be added to clean up the appearance of the views. 2 HTML errors in new inventory item view. Nothing beyond this works. Page not found error appears in the inventory management view. The description field in new inventory form is not sticky.
