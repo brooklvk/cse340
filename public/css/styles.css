@@ -5,6 +5,8 @@
   box-sizing: border-box;
 }
 
+/* ALL PAGES */
+
 /* Header */
 
 header, nav {
@@ -53,6 +55,8 @@ nav li {
   list-style-type: none;
   padding: 20px;
 }
+
+/* HOME PAGE */
 
 /* Body */
 
@@ -148,11 +152,27 @@ nav li {
   grid-row: 3/4;
 }
 
+/* OTHER PAGES... */
+
+
+
+
+
+
+
+
+
+/* MEDIA QUERY */
+
 @media screen and (min-width: 700px) {
+
+  /* ALL PAGES */
 
   nav {
     margin: 0 20px;
   }
+
+  /* HOME PAGE */
 
   body {
     width: 90%;
@@ -195,5 +215,9 @@ nav li {
   #upgrades img {
     height: 50px;
   }
+
+  /* OTHER PAGES... */
+
+
 
 }
