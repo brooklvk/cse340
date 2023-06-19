@@ -11,6 +11,7 @@ const utilities = require("./utilities/")
 const session = require("express-session")
 const pool = require('./database/')
 const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
 
 /* ***********************
  * Middleware
@@ -101,3 +102,7 @@ console.log(`app listening on ${host}:${port}`)
 //Obj 5 The validation does not prohibit allowing classification names to have a space. It should. The server-side validation for new inventory does not check for year, classification, or description. The messages should be displayed in the inventory management view after adding a new inventory item.
 
 //Obj 1 CSS needs to be added to clean up the appearance of the views. 2 HTML errors in new inventory item view. Nothing beyond this works. Page not found error appears in the inventory management view. The description field in new inventory form is not sticky.
+
+
+
+// Finish account-validation file, 2 functions to check login info on server side 

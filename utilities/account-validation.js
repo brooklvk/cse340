@@ -69,4 +69,14 @@ validate.checkRegData = async (req, res, next) => {
     next()
 }
   
+
+validate.loginRules = () => {
+// https://byui.instructure.com/courses/244722/modules/items/30586838 Add the Validations 
+}
+
+validate.checkLoginData = () => {
+  
+}
+
+
 module.exports = validate
