@@ -66,6 +66,8 @@ app.use(async (req, res, next) => {
   next({status: 404, message: "Sorry, we appear to have lost that page."})
 })
 
+app.use(utilities.checkJWTToken)
+
 /* ***********************
 * Express Error Handler
 * Place after all other middleware
