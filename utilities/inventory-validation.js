@@ -54,7 +54,7 @@ validate.enterInventoryRules = () => {
 
         body("inv_year")
         .trim()
-        .isLength({minmax: 4})
+        .isLength({min: 4, max: 4})
         .withMessage("Invalid vehicle year."),
 
         body("inv_description")
