@@ -263,6 +263,10 @@ button {
   margin: 10px 20px;
 }
 
+#management h2, #management p, #management table, #management select {
+  margin: 10px 20px;
+}
+
 
 /* MANAGE account page */
 
