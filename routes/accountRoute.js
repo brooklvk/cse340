@@ -11,8 +11,7 @@ router.get("/login", utilities.handleErrors(accountController.buildLogin));
 // Route for registration form 
 router.get("/register", utilities.handleErrors(accountController.buildRegister));
 
-router.get("/", utilities.handleErrors(accountController.buildManagement));
-// utilities.checkLogin,
+router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildManagement));
 
 // Process the login request
 router.post(
