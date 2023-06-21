@@ -6,7 +6,6 @@
       res.redirect('/')
     } %>
 
-    
 <!-- A message -->
 <%- messages() %>
 
@@ -19,7 +18,7 @@
    </ul>
   <% } %>
 
-<form id="editInventoryForm" action="/inv/edit-inventory" method="post">
+<form id="editInventoryForm" action="/inv/" method="post">
     <fieldset>
         <label>Make: <input name="inv_make" type="text" value="<%= locals.inv_make %>" required></label>
         <label>Model: <input name="inv_model" type="text" value="<%= locals.inv_model %>" required></label>

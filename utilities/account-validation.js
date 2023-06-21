@@ -73,7 +73,6 @@ validate.checkRegData = async (req, res, next) => {
  *  Login Data Validation Rules
  * ********************************* */
 validate.loginRules = () => {
-  // https://byui.instructure.com/courses/244722/modules/items/30586838 Add the Validations 
   return [
     // valid email is required and must exist in the database
     body("account_email")
