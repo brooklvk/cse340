@@ -180,3 +180,6 @@ invCont.buildEditInventory = async function (req, res, next) {
 invCont.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
 
 module.exports = invCont 
+
+
+//in buildeditinv add [0]to all data ex. inv_make[0]

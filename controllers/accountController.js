@@ -32,7 +32,7 @@ async function buildRegister(req, res, next) {
 async function buildManagement(req, res, next) {
   let nav = await utilities.getNav()
   res.render("account/account-management", {
-    title: "Account Management",
+    title: "Manage Account",
     nav,
     errors: null,
   });
@@ -108,7 +108,7 @@ async function accountLogin(req, res) {
    delete accountData.account_password
    const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
    res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
-   return res.redirect("/account/account-management")
+   return res.redirect("/account/")
    }
   } catch (error) {
    return new Error('Access Forbidden')

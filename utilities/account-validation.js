@@ -106,17 +106,15 @@ validate.loginRules = () => {
  *  Check login data and proceed to login 
  * ********************************* */
 validate.checkLoginData = async (req, res, next) => {
-  const { account_firstname, account_lastname, account_email } = req.body
+  const { account_email } = req.body
   let errors = []
   errors = validationResult(req)
-  if (errors.isEmpty()) {
+  if (!errors.isEmpty()) {
     let nav = await utilities.getNav()
-    res.render("account/account-management", {
+    res.render("account/login", {
       errors,
-      title: "Manage Account",
+      title: "Login",
       nav,
-      account_firstname,
-      account_lastname,
       account_email,
     })
     return
