@@ -92,7 +92,7 @@ Util.buildDetailGrid = async function(data) {
 
 Util.getClassificationOption = async function(req, res, next) {
   let data = await invModel.getClassifications()
-  let opt = '<select name="classification_id">'
+  let opt = '<select id="classificationList" name="classification_id">'
   opt += '<option value="0">Select Classification</option>'
   data.rows.forEach((row) => {
     opt += '<option value=' + row.classification_id + '>' 
