@@ -7,22 +7,17 @@
 
 /* ALL PAGES */
 
-* {
-  font-family: sans-serif;
-}
-
 /* Header */
 
 header, nav {
   font-family: sans-serif;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
 }
 
 header a {
@@ -40,26 +35,6 @@ header a {
   padding: 20px;
 }
 
-footer p {
-  margin: 20px;
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  max-width: fit-content;
-  font-size: 16px;
-}
-
-h1 {
-  
-}
-
-.notice {
-  width: 200px;
-  font-size: 1.3rem;
-}
-
 /* Nav */
 
 nav {
@@ -73,7 +48,6 @@ nav a {
 nav ul {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   justify-content: space-around;
 }
 
@@ -81,30 +55,6 @@ nav li {
   list-style-type: none;
   padding: 20px;
 }
-
-/* Forms */
-
-form, form fieldset {
-  display: flex;
-  flex-direction: column;
-  margin: 10px;
-  width: fit-content;
-}
-
-form input, button, select {
-  height: 45px;
-  margin: 10px;
-}
-
-form label {
-  display: flex;
-  flex-direction: column;
-}
-
-button {
-  background-color: rgb(254, 171, 139);
-}
-
 
 /* HOME PAGE */
 
@@ -202,93 +152,24 @@ button {
   grid-row: 3/4;
 }
 
-/* CLASSIFICATION and DETAILS pages */
-
-#inv-display {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-#inv-display li {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: auto;
-  max-width: 500px;
-  margin: 20px;
-  text-align: center;
-}
-
-#inv-display li a {
-  color: black;
-}
-
-#inv-display li a img {
-  width: auto;
-  height: auto;
-  max-width: 200px;
-}
-
-#inv-details {
-  margin-left: 20px;
-}
-
-#inv-details a img {
-  width: auto;
-  height: auto;
-  max-width: 500px;
-}
-
-/* LOGIN and REGISTER pages */
-
-#login-msg {
-  margin: 0 10px;
-}
-
-#login-msg a {
-  color: black;
-}
-
-/* MANAGEMENT page */
-
-#management {
-  display: flex;
-  flex-direction: column;
-}
-
-#management a {
-  font-size: 1.3rem;
-  color: black;
-  margin: 10px 20px;
-}
+/* OTHER PAGES... */
 
 
-/* MANAGE account page */
-
-#logged {
-  margin: 0 20px;
-}
 
 
-/* MANAGE classification / detail pages */
+
+
 
 
 
 /* MEDIA QUERY */
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 700px) {
 
   /* ALL PAGES */
 
   nav {
     margin: 0 20px;
-  }
-
-  /* Forms */
-
-  form, form fieldset {
-    width: 400px;
   }
 
   /* HOME PAGE */
@@ -335,26 +216,8 @@ button {
     height: 50px;
   }
 
-  /* CLASSIFICATION and DETAILS pages */
+  /* OTHER PAGES... */
 
-  #inv-display {
-
-  }
-
-  #inv-details {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
-  }
-
-  #inv-details a {
-    grid-column: 1/2;
-  }
-
-  .namePrice {
-    grid-column: 2/3;
-    margin-right: 20px;
-  }
 
 
 }

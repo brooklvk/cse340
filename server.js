@@ -99,16 +99,7 @@ console.log(`app listening on ${host}:${port}`)
 
 
 
-// Assn 4
+
 //Obj 1 CSS needs to be added to clean up the appearance of the views. 2 HTML errors in new inventory item view. 
+
 //Obj 5 The messages should be displayed in the inventory management view after adding a new inventory item.
-
-// Unit 5 
-// Accepts all emails even not registered, and wrong passwords too 
-
-
-
-//in add-inventory view:
-// change values to value="<%- locals." so it brings in current data for update view
-//dont change til assn: -editing not accessible unless logged in as employee/admin (its ok if you can access as client!for now)
-// from account-mgmt page: welcome, links you can access (edit-inv,edit-class if management/adnim) and account updates for everyone 
