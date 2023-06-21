@@ -22,6 +22,9 @@ router.get("/add-inventory", utilities.handleErrors(invController.buildAddInvent
 // Route for changing inventory 
 router.get("/add-inventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 
+// Route for changing inventory...?! 
+router.get("/inv/edit/:inv_id", utilities.handleErrors(invController.buildEditInventory))
+
 // Process adding classification 
 router.post(
     "/add-classification",
