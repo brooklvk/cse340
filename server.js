@@ -127,3 +127,8 @@ console.log(`app listening on ${host}:${port}`)
 // account_lastname: User
 // account_email: manager@340.edu
 // account_password: I@mAnAdm!n1strat0r
+
+// Issues: 
+// Does not create JWT cookie 
+// Does not actually check for email/pass in db 
+// /inv view, select doesn't bring up data 
