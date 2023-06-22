@@ -102,9 +102,11 @@ console.log(`app listening on ${host}:${port}`)
 //Obj 1 CSS needs to be added to clean up the appearance of the views. 2 HTML errors in new inventory item view. 
 //Obj 5 The messages should be displayed in the inventory management view after adding a new inventory item.
 
-// Unit 5 
-// Accepts all emails even not registered, and wrong passwords too 
 
+// Assn 5 
+// Fix links from /inv to Modify/Delete 
+// Find if loggedin for header 
+// 
 
 
 //in add-inventory view:
@@ -126,4 +128,3 @@ console.log(`app listening on ${host}:${port}`)
 // account_lastname: User
 // account_email: manager@340.edu
 // account_password: I@mAnAdm!n1strat0r
-
