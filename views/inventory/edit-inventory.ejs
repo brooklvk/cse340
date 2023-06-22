@@ -18,7 +18,7 @@
    </ul>
   <% } %>
 
-<form id="editInventoryForm" action="/inv/update" method="post">
+<form id="updateForm" action="/inv/update" method="post">
     <fieldset>
         <label>Make: <input name="inv_make" type="text" value="<%= locals.inv_make %>" required></label>
         <label>Model: <input name="inv_model" type="text" value="<%= locals.inv_model %>" required></label>
@@ -31,9 +31,11 @@
         <label>Color: <input name="inv_color" type="text" value="<%= locals.inv_color %>" required></label>
         <label>Classification:</label>
         <%- options %>
-        <button type="submit">UPDATE ITEM</button>
-        <!-- <input type="hidden" name="inv_id"
+        <button type="submit" disabled>UPDATE ITEM</button>
+        <input type="hidden" name="inv_id"
           <% if(locals.inv_id) { value="<%= locals.inv_id %>" %>
-          <% } %> -->
+          <% } %>
     </fieldset>
 </form>
+
+<script src="../../js/inv-update.js"></script>

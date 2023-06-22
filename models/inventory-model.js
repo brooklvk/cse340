@@ -87,10 +87,22 @@ async function updateInventory(inv_make, inv_model, inv_year, inv_description, i
     const data = await pool.query(sql, [inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id, inv_id])
     return data.rows[0]
   } catch (error) {
-    console.error("model error: " + error)
-    // return error.message
+     new Error("Update error: " + error)
+  }
+}
+
+/* *****************************
+*   Delete inventory item
+* *************************** */
+async function deleteInventory(inv_id) {
+  try {
+    const sql = 'DELETE FROM inventory WHERE inv_id = $1';
+    const data = await pool.query(sql, [inv_id])
+    return data 
+  } catch (error) {
+    new Error("Delete error: " + error)
   }
 }
 
 
-module.exports = {getClassifications, getInventoryByClassificationId, getInventoryDetailsByInventoryId, enterClassification, checkExistingClassification, enterInventory, updateInventory};
+module.exports = {getClassifications, getInventoryByClassificationId, getInventoryDetailsByInventoryId, enterClassification, checkExistingClassification, enterInventory, updateInventory, deleteInventory};
