@@ -119,6 +119,7 @@ Util.checkJWTToken = (req, res, next) => {
       return res.redirect("/account/login")
      }
      res.locals.accountData = accountData
+    //  console.log(JSON.stringify(accountData))
      res.locals.loggedin = 1
      next()
     })
@@ -143,7 +144,7 @@ Util.checkLogin = (req, res, next) => {
  *  Check if logged in as Admin/Employee 
  * ************************************ */
 Util.checkManagerLogin = (req, res, next) => {
-  if (res.locals.loggedin.accountData.account_type == "Admin" || res.locals.loggedin.accountData.account_type == "Employee") {
+  if (res.locals.accountData.account_type == "Admin" || res.locals.accountData.account_type == "Employee") {
     next()
   }
   else {

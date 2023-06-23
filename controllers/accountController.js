@@ -28,10 +28,20 @@ async function buildRegister(req, res, next) {
     })
   }
 
-// Deliver account management view Unit 5
+// Deliver account management view 
 async function buildManagement(req, res, next) {
   let nav = await utilities.getNav()
   res.render("account/account-management", {
+    title: "Manage Account",
+    nav,
+    errors: null,
+  });
+}
+
+// Deliver account update forms within management view 
+async function buildUpdate(req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("account/account-update", {
     title: "Manage Account",
     nav,
     errors: null,
@@ -187,4 +197,4 @@ async function changePassword(req, res) {
   }
 }
 
-module.exports = { buildLogin, buildRegister, buildManagement, registerAccount, accountLogin, updateAccount, changePassword }
+module.exports = { buildLogin, buildRegister, buildManagement, buildUpdate, registerAccount, accountLogin, updateAccount, changePassword }

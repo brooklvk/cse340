@@ -11,9 +11,9 @@ router.get("/login", utilities.handleErrors(accountController.buildLogin));
 // Route for registration form 
 router.get("/register", utilities.handleErrors(accountController.buildRegister));
 
-router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildManagement));
-
 router.get("/account-management", utilities.checkLogin, utilities.handleErrors(accountController.buildManagement));
+
+router.get("/account-update", utilities.checkLogin, utilities.handleErrors(accountController.buildUpdate));
 
 // Process the login request
 router.post(
@@ -33,7 +33,7 @@ router.post(
 
 // Process the update (name/email)
 router.post(
-  "/account-management",
+  "/update-account",
   validate.updateAccountRules(),
   validate.checkAccountData,
   utilities.handleErrors(accountController.updateAccount)
@@ -41,7 +41,7 @@ router.post(
 
 // Process change password 
 router.post(
-  "/account-management",
+  "/update-password",
   validate.changePasswordRules(),
   validate.checkPasswordData,
   utilities.handleErrors(accountController.changePassword)  

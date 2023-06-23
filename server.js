@@ -100,16 +100,14 @@ console.log(`app listening on ${host}:${port}`)
 
 // Assn 4 
 //Obj 5 The messages should be displayed in the inventory management view after adding a new inventory item.
-// UNIT 5 ALSO AFTER DELETING OR UPDATING, FLASH MSG ON MANAGEMENT PAGE 
 
 
 // Unit 5
 // Make select option sticky / check classification id 
-// Test that update functioning works 
 
 
 // Assn 5 
-// Find if loggedin for header 
+// How to differentiate 2 posts in account-management 
 
 
 

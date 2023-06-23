@@ -30,6 +30,10 @@ header a {
   color: black;
 }
 
+header a:nth-of-type(2), header a:nth-of-type(3) {
+  padding: 0 30px;
+}
+
 .siteName {
   font-size: 2em;
   padding: 20px;
