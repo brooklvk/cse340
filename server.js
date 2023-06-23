@@ -98,14 +98,19 @@ console.log(`app listening on ${host}:${port}`)
 
 
 
-// Assn 4
-//Obj 1 CSS needs to be added to clean up the appearance of the views. 2 HTML errors in new inventory item view. 
+// Assn 4 
 //Obj 5 The messages should be displayed in the inventory management view after adding a new inventory item.
+// UNIT 5 ALSO AFTER DELETING OR UPDATING! FLASH MSG ON MANAGEMENT PAGE 
+
+
+// Unit 5
+// Make select option sticky / check classification id 
+// Test that update functioning works 
 
 
 // Assn 5 
 // Find if loggedin for header 
-// Make select option sticky / check classification id 
+
 
 
 // Logins 
