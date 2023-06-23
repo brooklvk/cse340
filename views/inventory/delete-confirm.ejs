@@ -27,7 +27,8 @@
       <label>Price: <input name="inv_price" type="number" value="<%= locals.inv_price %>" readonly></label>
       <button type="submit">DELETE ITEM</button>
       <input type="hidden" name="inv_id"
-        <% if(locals.inv_id) { value="<%= locals.inv_id %>" %>
+        <% if(locals.inv_id) { %> value="<%= locals.inv_id %>" 
         <% } %>
+        >
     </fieldset>
 </form>

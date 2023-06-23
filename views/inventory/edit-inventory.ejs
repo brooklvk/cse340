@@ -23,7 +23,7 @@
         <label>Make: <input name="inv_make" type="text" value="<%= locals.inv_make %>" required></label>
         <label>Model: <input name="inv_model" type="text" value="<%= locals.inv_model %>" required></label>
         <label>Year: <input name="inv_year" type="number" value="<%= locals.inv_year %>" required></label>
-        <label>Description: <textarea name="inv_description" cols="30" rows="10" value="<%= locals.inv_description %>" required></textarea></label>
+        <label>Description: <textarea name="inv_description" cols="30" rows="10" required><%= locals.inv_description %></textarea></label>
         <label>Image: <input name="inv_image" type="text" value="<%= locals.inv_image %>" required></label>
         <label>Thumbnail: <input name="inv_thumbnail" type="text" value="<%= locals.inv_thumbnail %>" required></label>
         <label>Price: <input name="inv_price" type="number" value="<%= locals.inv_price %>" required></label>
@@ -33,8 +33,9 @@
         <%- options %>
         <button type="submit" disabled>UPDATE ITEM</button>
         <input type="hidden" name="inv_id"
-          <% if(locals.inv_id) { value="<%= locals.inv_id %>" %>
+          <% if(locals.inv_id) { %> value="<%= locals.inv_id %>" 
           <% } %>
+          >
     </fieldset>
 </form>
 

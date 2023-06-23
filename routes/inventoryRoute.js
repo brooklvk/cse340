@@ -24,10 +24,10 @@ router.get("/add-inventory", utilities.handleErrors(invController.buildAddInvent
 router.get("/add-inventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 
 // Route for editing inventory item
-router.get("/inv/edit/:inv_id", utilities.handleErrors(invController.buildEditInventory))
+router.get("/edit/:inv_id", utilities.handleErrors(invController.buildEditInventory))
 
 // Route for deleting inventory item
-router.get("/inv/delete/:inv_id", utilities.handleErrors(invController.buildDelete))
+router.get("/delete/:inv_id", utilities.handleErrors(invController.buildDelete))
 
 // Process adding classification 
 router.post(
@@ -47,7 +47,7 @@ router.post(
 
 // Process updating inventory 
 router.post("/update/", 
-validate.enterInventoryRules, 
+validate.enterInventoryRules(), 
 validate.checkUpdateData, 
 utilities.handleErrors(invController.updateInventory))
 

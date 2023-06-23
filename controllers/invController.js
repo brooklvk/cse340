@@ -155,7 +155,7 @@ invCont.getInventoryJSON = async (req, res, next) => {
 invCont.buildEditInventory = async function (req, res, next) {
   const inv_id = parseInt(req.params.inv_id)
   let nav = await utilities.getNav()
-  const itemData = await invModel.getInventoryById(inv_id)
+  const itemData = await invModel.getInventoryDetailsByInventoryId(inv_id)
   const options = await utilities.getClassificationOption()
   const itemName = `${itemData[0].inv_make} ${itemData[0].inv_model}`
   res.render("inventory/edit-inventory", {
@@ -240,7 +240,7 @@ invCont.updateInventory = async function (req, res, next) {
 invCont.buildDelete = async function (req, res, next) {
   const inv_id = parseInt(req.params.inv_id)
   let nav = await utilities.getNav()
-  const itemData = await invModel.getInventoryById(inv_id)
+  const itemData = await invModel.getInventoryDetailsByInventoryId(inv_id)
   const options = await utilities.getClassificationOption()
   const itemName = `${itemData[0].inv_make} ${itemData[0].inv_model}`
   res.render("inventory/delete-confirm", {

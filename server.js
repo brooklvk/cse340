@@ -104,15 +104,8 @@ console.log(`app listening on ${host}:${port}`)
 
 
 // Assn 5 
-// Fix links from /inv to Modify/Delete 
 // Find if loggedin for header 
-// 
-
-
-//in add-inventory view:
-// change values to value="<%- locals." so it brings in current data for update view
-//dont change til assn: -editing not accessible unless logged in as employee/admin (its ok if you can access as client!for now)
-// from account-mgmt page: welcome, links you can access (edit-inv,edit-class if management/adnim) and account updates for everyone 
+// Make select option sticky / check classification id 
 
 
 // Logins 
