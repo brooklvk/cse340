@@ -113,6 +113,43 @@ async function accountLogin(req, res) {
   } catch (error) {
    return new Error('Access Forbidden')
   }
- }
+}
 
-module.exports = { buildLogin, buildRegister, buildManagement, registerAccount, accountLogin }
+/* ****************************************
+*  Process Update
+* *************************************** */
+async function updateAccount(req, res) {
+  let nav = await utilities.getNav()
+  const { account_firstname, account_lastname, account_email, account_id } = req.body
+
+  const accResult = await accountModel.updateAccount(
+      account_firstname,
+      account_lastname,
+      account_email,
+      account_id
+  )
+
+  if (accResult) {
+    // do something with this 
+    const newData = accountModel.getAccountById(account_id)
+    req.flash(
+      "notice",
+      `You\'ve updated your account.`
+    )
+    res.status(201).render("account/account-management", {
+      title: "Manage Account",
+      nav,
+      errors: null,
+      newData
+    })
+  } else {
+    req.flash("notice", "Sorry, the update failed.")
+    res.status(501).render("account/account-management", {
+      title: "Manage Account",
+      nav,
+      errors: null,
+    })
+  }
+}
+
+module.exports = { buildLogin, buildRegister, buildManagement, registerAccount, accountLogin, updateAccount }

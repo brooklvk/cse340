@@ -100,7 +100,7 @@ console.log(`app listening on ${host}:${port}`)
 
 // Assn 4 
 //Obj 5 The messages should be displayed in the inventory management view after adding a new inventory item.
-// UNIT 5 ALSO AFTER DELETING OR UPDATING! FLASH MSG ON MANAGEMENT PAGE 
+// UNIT 5 ALSO AFTER DELETING OR UPDATING, FLASH MSG ON MANAGEMENT PAGE 
 
 
 // Unit 5

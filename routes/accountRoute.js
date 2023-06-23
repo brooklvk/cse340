@@ -13,6 +13,8 @@ router.get("/register", utilities.handleErrors(accountController.buildRegister))
 
 router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildManagement));
 
+router.get("/account-management", utilities.checkLogin, utilities.handleErrors(accountController.buildManagement));
+
 // Process the login request
 router.post(
   "/login",
@@ -27,6 +29,14 @@ router.post(
     regValidate.registrationRules(),
     regValidate.checkRegData,
     utilities.handleErrors(accountController.registerAccount)
+)
+
+// Process the update (name/email)
+router.post(
+  "/account-management",
+  regValidate.registrationRules(),
+  regValidate.checkRegData,
+  utilities.handleErrors(accountController.updateAccount)
 )
 
 module.exports = router;
