@@ -11,7 +11,8 @@ router.get("/type/:classificationId", utilities.handleErrors(invController.build
 // Route to build inventory detail view 
 router.get("/detail/:inventoryId", utilities.handleErrors(invController.buildByInventoryId));
 
-router.get("/", utilities.handleErrors(invController.buildManagement));
+// Build management view 
+router.get("/", utilities.checkLogin, utilities.handleErrors(invController.buildManagement));
 
 // Route for adding classification 
 router.get("/add-classification", utilities.handleErrors(invController.buildAddClassification))
@@ -19,11 +20,14 @@ router.get("/add-classification", utilities.handleErrors(invController.buildAddC
 // Route for adding to inventory 
 router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory))
 
-// Route for changing inventory 
+// Route for getting inventory by class id 
 router.get("/add-inventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 
-// Route for changing inventory...?! 
-router.get("/inv/edit/:inv_id", utilities.handleErrors(invController.buildEditInventory))
+// Route for editing inventory item
+router.get("/edit/:inv_id", utilities.handleErrors(invController.buildEditInventory))
+
+// Route for deleting inventory item
+router.get("/delete/:inv_id", utilities.handleErrors(invController.buildDelete))
 
 // Process adding classification 
 router.post(
@@ -40,5 +44,16 @@ router.post(
     validate.checkInventoryData,
     utilities.handleErrors(invController.enterInventory)
 )
+
+// Process updating inventory 
+router.post("/update/", 
+validate.enterInventoryRules(), 
+validate.checkUpdateData, 
+utilities.handleErrors(invController.updateInventory))
+
+
+// Process deleting an item 
+router.post("/delete/", 
+utilities.handleErrors(invController.deleteInventory))
 
 module.exports = router;
