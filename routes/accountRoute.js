@@ -3,7 +3,7 @@ const express = require("express")
 const router = new express.Router() 
 const utilities = require("../utilities/index")
 const accountController = require("../controllers/accountController")
-const regValidate = require('../utilities/account-validation')
+const validate = require('../utilities/account-validation')
 
 // Route for account login 
 router.get("/login", utilities.handleErrors(accountController.buildLogin));
@@ -18,25 +18,33 @@ router.get("/account-management", utilities.checkLogin, utilities.handleErrors(a
 // Process the login request
 router.post(
   "/login",
-  regValidate.loginRules(),
-  regValidate.checkLoginData,
+  validate.loginRules(),
+  validate.checkLoginData,
   utilities.handleErrors(accountController.accountLogin)
 )
 
 // Process the registration data
 router.post(
     "/register",
-    regValidate.registrationRules(),
-    regValidate.checkRegData,
+    validate.registrationRules(),
+    validate.checkRegData,
     utilities.handleErrors(accountController.registerAccount)
 )
 
 // Process the update (name/email)
 router.post(
   "/account-management",
-  regValidate.registrationRules(),
-  regValidate.checkRegData,
+  validate.updateAccountRules(),
+  validate.checkAccountData,
   utilities.handleErrors(accountController.updateAccount)
+)
+
+// Process change password 
+router.post(
+  "/account-management",
+  validate.changePasswordRules(),
+  validate.checkPasswordData,
+  utilities.handleErrors(accountController.changePassword)  
 )
 
 module.exports = router;

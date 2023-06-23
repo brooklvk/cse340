@@ -21,7 +21,7 @@
 
 <h2>Account Update</h2>
 
-<form action="/account/account_management" method="post">
+<form action="/account/account-management" method="post">
   <fieldset>
     <label>First Name: <input name="account_firstname" id="accountFirstname" type="text" value="<%= locals.account_firstname %>" required></label>
     <label>Last Name: <input name="account_lastname" id="accountLastname" type="text" value="<%= locals.account_lastname %>" required></label>
@@ -33,7 +33,7 @@
 
 <h2>Change Password</h2>
 
-<form action="/account/account_management" method="post">
+<form action="/account/account-management" method="post">
   <fieldset>
     <small>Password must be at least 12 characters long and include 1 capital letter, 1 number, and 1 special character.</small>
     <label>Password: <input name="account_password" type="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required></label>

@@ -108,7 +108,7 @@ async function accountLogin(req, res) {
    delete accountData.account_password
    const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
    res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
-   return res.redirect("/account/")
+   return res.redirect("/account/account-management")
    }
   } catch (error) {
    return new Error('Access Forbidden')
@@ -152,4 +152,39 @@ async function updateAccount(req, res) {
   }
 }
 
-module.exports = { buildLogin, buildRegister, buildManagement, registerAccount, accountLogin, updateAccount }
+/* ****************************************
+*  Process change password 
+* *************************************** */
+async function changePassword(req, res) {
+  let nav = await utilities.getNav()
+  const { account_password, account_id } = req.body
+
+  const accResult = await accountModel.changePassword(
+    account_password,
+    account_id
+  )
+
+  if (accResult) {
+    // do something with this 
+    const newData = accountModel.getAccountById(account_id)
+    req.flash(
+      "notice",
+      `You\'ve changed your password.`
+    )
+    res.status(201).render("account/account-management", {
+      title: "Manage Account",
+      nav,
+      errors: null,
+      newData
+    })
+  } else {
+    req.flash("notice", "Sorry, the password change failed.")
+    res.status(501).render("account/account-management", {
+      title: "Manage Account",
+      nav,
+      errors: null,
+    })
+  }
+}
+
+module.exports = { buildLogin, buildRegister, buildManagement, registerAccount, accountLogin, updateAccount, changePassword }
