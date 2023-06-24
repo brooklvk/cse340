@@ -107,8 +107,6 @@ console.log(`app listening on ${host}:${port}`)
 
 
 // Assn 5 
-// How to differentiate 2 posts in account-management 
-
 
 
 // Logins 

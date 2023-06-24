@@ -59,6 +59,10 @@ h1 {
   
 }
 
+h2 {
+  margin: 10px 20px;
+}
+
 .notice {
   width: 200px;
   font-size: 1.3rem;
@@ -276,6 +280,12 @@ button {
 
 #logged {
   margin: 0 20px;
+}
+
+#update-acc > * {
+  font-size: 1.3rem;
+  color: black;
+  margin: 10px  20px;
 }
 
 
