@@ -95,26 +95,3 @@ const port = process.env.PORT
 app.listen(port, () => {
 console.log(`app listening on ${host}:${port}`)
 });
-
-
-// Unit 5
-// Make select option sticky / check classification id 
-// on login page if wrong password show message (endless loading) 
-// on update- reset form values and welcome msg with new info (persistent)
-// on edit-inv page the flash msg goes to edit-inv not management 
-
-
-
-// Logins 
-// account_firstname: Basic
-// account_lastname: Client
-// account_email: basic@340.edu
-// account_password: I@mABas1cCl!3nt
-// account_firstname: Happy
-// account_lastname: Employee
-// account_email: happy@340.edu
-// account_password: I@mAnEmpl0y33
-// account_firstname: Manager
-// account_lastname: User
-// account_email: manager@340.edu
-// account_password: I@mAnAdm!n1strat0r
