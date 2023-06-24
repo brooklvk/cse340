@@ -42,6 +42,8 @@ header a:nth-of-type(2), header a:nth-of-type(3) {
 
 #tools {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 footer p {
@@ -92,7 +94,7 @@ form, form fieldset {
   display: flex;
   flex-direction: column;
   margin: 10px;
-  width: fit-content;
+  width: 300px;
 }
 
 form input, button, select {
@@ -297,6 +299,14 @@ button {
 
   nav {
     margin: 0 20px;
+  }
+
+  #tools {
+    flex-direction: row;
+  }
+
+  #tools a {
+    padding: 0 20px;
   }
 
   /* Forms */
