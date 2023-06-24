@@ -55,10 +55,6 @@ main {
   font-size: 16px;
 }
 
-h1 {
-  
-}
-
 h2 {
   margin: 10px 20px;
 }
@@ -355,9 +351,9 @@ button {
 
   /* CLASSIFICATION and DETAILS pages */
 
-  #inv-display {
+  /* #inv-display {
 
-  }
+  } */
 
   #inv-details {
     display: grid;
