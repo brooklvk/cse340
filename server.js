@@ -97,13 +97,17 @@ console.log(`app listening on ${host}:${port}`)
 });
 
 
+// Assn 4 
+// Obj 5 The messages should be displayed in the inventory management view after adding a new inventory item.
+
 // Unit 5
 // Make select option sticky / check classification id 
+
 // on login page if wrong password show message (endless loading) 
-// on update- reset form values and welcome msg with new info (persistent)
 
 
 
+// on update-- delete jwt token 
 
 // Logins 
 // account_firstname: Basic

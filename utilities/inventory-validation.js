@@ -59,7 +59,7 @@ validate.enterInventoryRules = () => {
 
         body("inv_description")
         .trim()
-        .isLength({max: 500})
+        .isLength({max: 100})
         .withMessage("Invalid vehicle description"),
 
         body("inv_image")

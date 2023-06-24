@@ -140,8 +140,7 @@ async function updateAccount(req, res) {
   )
   const accById = await accountModel.getAccountById(account_id)
   res.locals.accountData = accById
-  console.log(accById)
-  console.log(res.locals.accountData.account_firstname)
+  // console.log(accById)
   if (accResult && accById) {
     req.flash(
       "notice",
