@@ -107,9 +107,7 @@ console.log(`app listening on ${host}:${port}`)
 
 
 
-// on update and logout-- delete jwt token 
-// **on logout, delete cookie and redirect to home view 
-
+// on update-- delete jwt token 
 
 // Logins 
 // account_firstname: Basic

@@ -17,7 +17,7 @@ router.get("/account-management", utilities.checkLogin, utilities.handleErrors(a
 // Route for account update page 
 router.get("/account-update", utilities.checkLogin, utilities.handleErrors(accountController.buildUpdate));
 
-// Route for logout (home page)
+// Route for logout (redirects to home page)
 router.get("/logout", utilities.deleteCookie, utilities.handleErrors(accountController.buildLogin));
 
 // Process the login request

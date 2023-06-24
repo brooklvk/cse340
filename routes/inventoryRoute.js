@@ -15,19 +15,19 @@ router.get("/detail/:inventoryId", utilities.handleErrors(invController.buildByI
 router.get("/", utilities.checkManagerLogin, utilities.handleErrors(invController.buildManagement));
 
 // Route for adding classification 
-router.get("/add-classification", utilities.handleErrors(invController.buildAddClassification))
+router.get("/add-classification", utilities.checkManagerLogin, utilities.handleErrors(invController.buildAddClassification))
 
 // Route for adding to inventory 
-router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory))
+router.get("/add-inventory", utilities.checkManagerLogin, utilities.handleErrors(invController.buildAddInventory))
 
 // Route for getting inventory by class id 
-router.get("/add-inventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+router.get("/add-inventory/:classification_id", utilities.checkManagerLogin, utilities.handleErrors(invController.getInventoryJSON))
 
 // Route for editing inventory item
-router.get("/edit/:inv_id", utilities.handleErrors(invController.buildEditInventory))
+router.get("/edit/:inv_id", utilities.checkManagerLogin, utilities.handleErrors(invController.buildEditInventory))
 
 // Route for deleting inventory item
-router.get("/delete/:inv_id", utilities.handleErrors(invController.buildDelete))
+router.get("/delete/:inv_id", utilities.checkManagerLogin, utilities.handleErrors(invController.buildDelete))
 
 // Process adding classification 
 router.post(

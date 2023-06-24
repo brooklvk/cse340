@@ -40,17 +40,11 @@ async function buildManagement(req, res, next) {
 
 // Deliver account update forms within management view 
 async function buildUpdate(req, res, next) {
-  // const account_id = parseInt(req.params.account_id)
   let nav = await utilities.getNav()
-  // const accountData = await accountModel.getAccountById(account_id)
   res.render("account/account-update", {
     title: "Update Account",
     nav,
     errors: null,
-    // account_firstname: accountData.account_firstname,
-    // account_lastname: accountData.account_lastname,
-    // account_email: accountData.account_email,
-    // account_id: accountData.account_id
   });
 }
 
