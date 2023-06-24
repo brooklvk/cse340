@@ -183,30 +183,30 @@ invCont.buildEditInventory = async function (req, res, next) {
 invCont.updateInventory = async function (req, res, next) {
   let nav = await utilities.getNav()
   const {
-    inv_id,
     inv_make,
     inv_model,
+    inv_year,
     inv_description,
     inv_image,
     inv_thumbnail,
     inv_price,
-    inv_year,
     inv_miles,
     inv_color,
     classification_id,
+    inv_id
   } = req.body
   const updateResult = await invModel.updateInventory(
-    inv_id,  
     inv_make,
     inv_model,
+    inv_year,
     inv_description,
     inv_image,
     inv_thumbnail,
     inv_price,
-    inv_year,
     inv_miles,
     inv_color,
-    classification_id
+    classification_id,
+    inv_id
   )
 
   if (updateResult) {
@@ -222,7 +222,6 @@ invCont.updateInventory = async function (req, res, next) {
     nav,
     options: options,
     errors: null,
-    inv_id,
     inv_make,
     inv_model,
     inv_year,
@@ -232,7 +231,8 @@ invCont.updateInventory = async function (req, res, next) {
     inv_price,
     inv_miles,
     inv_color,
-    classification_id
+    classification_id,
+    inv_id
     })
   }
 }

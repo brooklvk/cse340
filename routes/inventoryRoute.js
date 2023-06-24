@@ -46,14 +46,14 @@ router.post(
 )
 
 // Process updating inventory 
-router.post("/update/", 
+router.post("/update", 
 validate.enterInventoryRules(), 
 validate.checkUpdateData, 
 utilities.handleErrors(invController.updateInventory))
 
 
 // Process deleting an item 
-router.post("/delete/", 
+router.post("/delete", 
 utilities.handleErrors(invController.deleteInventory))
 
 module.exports = router;
