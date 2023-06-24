@@ -101,7 +101,7 @@ console.log(`app listening on ${host}:${port}`)
 // Make select option sticky / check classification id 
 // on login page if wrong password show message (endless loading) 
 // on update- reset form values and welcome msg with new info (persistent)
-
+// on edit-inv page the flash msg goes to edit-inv not management 
 
 
 
