@@ -103,11 +103,12 @@ console.log(`app listening on ${host}:${port}`)
 // Unit 5
 // Make select option sticky / check classification id 
 
-
 // on login page if wrong password show message (endless loading) 
-// actually change password 
 
-// after update name/email, query db again and update locals (works kind of)
+
+
+// on update and logout-- delete jwt token 
+// **on logout, delete cookie and redirect to home view 
 
 
 // Logins 

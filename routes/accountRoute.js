@@ -11,9 +11,14 @@ router.get("/login", utilities.handleErrors(accountController.buildLogin));
 // Route for registration form 
 router.get("/register", utilities.handleErrors(accountController.buildRegister));
 
+// Route for account manage page 
 router.get("/account-management", utilities.checkLogin, utilities.handleErrors(accountController.buildManagement));
 
+// Route for account update page 
 router.get("/account-update", utilities.checkLogin, utilities.handleErrors(accountController.buildUpdate));
+
+// Route for logout (home page)
+router.get("/logout", utilities.deleteCookie, utilities.handleErrors(accountController.buildLogin));
 
 // Process the login request
 router.post(
