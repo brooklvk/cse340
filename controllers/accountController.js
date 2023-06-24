@@ -42,7 +42,7 @@ async function buildManagement(req, res, next) {
 async function buildUpdate(req, res, next) {
   let nav = await utilities.getNav()
   res.render("account/account-update", {
-    title: "Manage Account",
+    title: "Update Account",
     nav,
     errors: null,
   });
@@ -138,24 +138,23 @@ async function updateAccount(req, res) {
       account_email,
       account_id
   )
-
-  if (accResult) {
-    // do something with this 
-    const newData = accountModel.getAccountById(account_id)
+  const accById = await accountModel.getAccountById(account_id)
+  res.locals.accountData = accById
+  // console.log(accById)
+  if (accResult && accById) {
     req.flash(
       "notice",
       `You\'ve updated your account.`
     )
-    res.status(201).render("account/account-management", {
-      title: "Manage Account",
+    res.status(201).render("account/account-update", {
+      title: "Update Account",
       nav,
       errors: null,
-      newData
     })
   } else {
     req.flash("notice", "Sorry, the update failed.")
-    res.status(501).render("account/account-management", {
-      title: "Manage Account",
+    res.status(501).render("account/account-update", {
+      title: "Update Account",
       nav,
       errors: null,
     })
@@ -175,22 +174,19 @@ async function changePassword(req, res) {
   )
 
   if (accResult) {
-    // do something with this 
-    const newData = accountModel.getAccountById(account_id)
     req.flash(
       "notice",
       `You\'ve changed your password.`
     )
-    res.status(201).render("account/account-management", {
-      title: "Manage Account",
+    res.status(201).render("account/account-update", {
+      title: "Update Account",
       nav,
       errors: null,
-      newData
     })
   } else {
     req.flash("notice", "Sorry, the password change failed.")
-    res.status(501).render("account/account-management", {
-      title: "Manage Account",
+    res.status(501).render("account/account-update", {
+      title: "Update Account",
       nav,
       errors: null,
     })

@@ -25,10 +25,10 @@ router.post(
 
 // Process the registration data
 router.post(
-    "/register",
-    validate.registrationRules(),
-    validate.checkRegData,
-    utilities.handleErrors(accountController.registerAccount)
+  "/register",
+  validate.registrationRules(),
+  validate.checkRegData,
+  utilities.handleErrors(accountController.registerAccount)
 )
 
 // Process the update (name/email)

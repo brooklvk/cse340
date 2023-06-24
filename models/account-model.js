@@ -58,8 +58,9 @@ async function getAccountById (account_id) {
 * *************************** */
 async function updateAccount(account_firstname, account_lastname, account_email, account_id){
   try {
-    const sql = "UPDATE account (account_firstname, account_lastname, account_email) VALUES ($1, $2, $3) WHERE account_id = $4"
-    return await pool.query(sql, [account_firstname, account_lastname, account_email, account_id])
+    const sql = "UPDATE account SET account_firstname = $1, account_lastname = $2, account_email = $3 WHERE account_id = $4;"
+    const result = await pool.query(sql, [account_firstname, account_lastname, account_email, account_id])
+    return result.rows
   } catch (error) {
     return error.message
   }

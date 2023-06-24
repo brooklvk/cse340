@@ -97,16 +97,17 @@ console.log(`app listening on ${host}:${port}`)
 });
 
 
-
 // Assn 4 
-//Obj 5 The messages should be displayed in the inventory management view after adding a new inventory item.
-
+// Obj 5 The messages should be displayed in the inventory management view after adding a new inventory item.
 
 // Unit 5
 // Make select option sticky / check classification id 
 
 
-// Assn 5 
+// on login page if wrong password show message (endless loading) 
+// actually change password 
+
+// after update name/email, query db again and update locals (works kind of)
 
 
 // Logins 

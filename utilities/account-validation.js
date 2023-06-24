@@ -157,7 +157,7 @@ validate.updateAccountRules = () => {
 }
 
 /* ******************************
-* Check data and return errors or continue to account management 
+* Check data and return errors or continue to account update page 
 * ***************************** */
 validate.checkAccountData = async (req, res, next) => {
   const { account_firstname, account_lastname, account_email } = req.body
@@ -165,9 +165,9 @@ validate.checkAccountData = async (req, res, next) => {
   errors = validationResult(req)
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav()
-    res.render("account/account-management", {
+    res.render("account/account-update", {
       errors,
-      title: "Manage account",
+      title: "Update Account",
       nav,
       account_firstname,
       account_lastname,
@@ -198,7 +198,7 @@ validate.changePasswordRules = () => {
 }
 
 /* ******************************
-* Check data and return errors or continue to account management 
+* Check data and return errors or continue to account update page 
 * ***************************** */
 validate.checkPasswordData = async (req, res, next) => {
   const { account_password } = req.body
@@ -206,9 +206,9 @@ validate.checkPasswordData = async (req, res, next) => {
   errors = validationResult(req)
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav()
-    res.render("account/account-management", {
+    res.render("account/account-update", {
       errors,
-      title: "Manage account",
+      title: "Update Account",
       nav,
       account_password
     })

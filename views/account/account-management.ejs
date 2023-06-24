@@ -25,9 +25,7 @@
 
 <% if (locals.accountData.account_type == "Employee" || locals.accountData.account_type == "Admin") { %>
   <h2>Welcome, <%= locals.accountData.account_firstname %></h2>
-  <a href="/inv/add-classification">Add a Classification</a>
-  <a href="/inv/add-inventory">Add an Inventory Item</a>
-  <a href="/inv/">Manage/Edit Inventory</a>
+  <a href="/inv/">Manage (Add or Edit) Inventory</a>
 <% } %>
 
 <a href="/account/account-update">Update Account</a>
