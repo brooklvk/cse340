@@ -71,8 +71,9 @@ async function updateAccount(account_firstname, account_lastname, account_email,
 * *************************** */
 async function changePassword(account_password, account_id) {
   try {
-    const sql = "UPDATE account (account_password) VALUES ($1) WHERE account_id = $2"
-    return await pool.query(sql, [account_password, account_id])
+    const sql = "UPDATE account SET account_password = $1 WHERE account_id = $2;"
+    const result = await pool.query(sql, [account_password, account_id])
+    return result.rows
   } catch (error) {
     return error.message
   }

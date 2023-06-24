@@ -128,6 +128,19 @@ Util.checkJWTToken = (req, res, next) => {
   }
 }
 
+
+/* ****************************************
+* Delete token on logout and also on update account 
+**************************************** */
+// Util.deleteCookie = (req, res, next) => {
+//   if (req.cookies.jwt) {
+//   req.clearCookie(jwt)
+//   next()
+//   } else {
+//    next()
+//   }
+// }
+
 /* ****************************************
  *  Check Login
  * ************************************ */
