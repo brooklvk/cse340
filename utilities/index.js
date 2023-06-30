@@ -167,6 +167,19 @@ Util.checkManagerLogin = (req, res, next) => {
   }
 }
 
+// find build classification grid/details functions 
+
+// function to build inbox view table 
+// info from model- db query
+// copy builddetailgrid func OR buildotherthing 
+//also getclassificationoptions 
+
+// in controller, pull this function and from ?
+
+
+
+
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 

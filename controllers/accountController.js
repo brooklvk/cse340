@@ -183,6 +183,10 @@ async function updateAccount(req, res) {
   console.log(accById)
   console.log(res.locals.accountData.account_firstname)
   if (accResult && accById) {
+    utilities.deleteCookie;
+    const accountData = await accountModel.getAccountById(account_id);
+    accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, {expiresIn: 3600 * 1000});
+    res.cookie("jwt", accessToken, {httpOnly: true});
     req.flash(
       "notice",
       `You\'ve updated your account.`
