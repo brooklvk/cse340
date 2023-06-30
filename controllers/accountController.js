@@ -48,6 +48,46 @@ async function buildUpdate(req, res, next) {
   });
 }
 
+// Deliver inbox view (access through account manage page)
+async function buildInbox(req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("account/inbox", {
+    title: "(username) Inbox",
+    nav,
+    errors: null,
+  });
+}
+
+// Deliver archive view (access through inbox page)
+async function buildArchive(req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("account/archive", {
+    title: "(username) Archives",
+    nav,
+    errors: null,
+  });
+}
+
+// Deliver message view (access through inbox OR archive)
+async function buildMessage(req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("account/message", {
+    title: "(Subject)",
+    nav,
+    errors: null,
+  });
+}
+
+// Deliver new message view (access thru inbox page OR message page)
+async function buildNewMessage(req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("account/new-message", {
+    title: "New Message",
+    nav,
+    errors: null,
+  });
+}
+
 /* ****************************************
 *  Process Registration
 * *************************************** */
@@ -208,4 +248,4 @@ async function changePassword(req, res) {
   }
 }
 
-module.exports = { buildLogin, buildRegister, buildManagement, buildUpdate, registerAccount, accountLogin, updateAccount, changePassword }
+module.exports = { buildLogin, buildRegister, buildManagement, buildUpdate, buildInbox, buildArchive, buildMessage, buildNewMessage, registerAccount, accountLogin, updateAccount, changePassword }

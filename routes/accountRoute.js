@@ -20,6 +20,18 @@ router.get("/account-update", utilities.checkLogin, utilities.handleErrors(accou
 // Route for logout (redirects to home page)
 router.get("/logout", utilities.deleteCookie, utilities.handleErrors(accountController.buildLogin));
 
+// Route for inbox 
+router.get("/inbox", utilities.checkLogin, utilities.handleErrors(accountController.buildInbox));
+
+// Route for archive 
+router.get("/archive", utilities.checkLogin, utilities.handleErrors(accountController.buildArchive));
+
+// Route for read a message 
+router.get("/message", utilities.checkLogin, utilities.handleErrors(accountController.buildMessage));
+
+// Route for write new message 
+router.get("/new-message", utilities.checkLogin, utilities.handleErrors(accountController.buildNewMessage));
+
 // Process the login request
 router.post(
   "/login",

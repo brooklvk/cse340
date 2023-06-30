@@ -1,0 +1,37 @@
+<!-- A content heading -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+<!-- A message -->
+<%- messages() %>
+
+<!-- Display any errors. -->
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+
+<a class="return" href="/account/inbox">Return to Inbox</a>
+
+<table>
+  <tr>
+    <th>Received</th>
+    <th>Subject</th>
+    <th>From</th>
+    <th>Read</th>
+  </tr>
+
+  <tr>
+    <th>Time received</th>
+    <th><a href="/account/message">Subject</a></th>
+    <th>User firstname</th>
+    <th>true/false</th>
+  </tr>
+
+</table>

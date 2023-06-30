@@ -1,0 +1,31 @@
+<!-- A content heading -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+<!-- A message -->
+<%- messages() %>
+
+<!-- Display any errors. -->
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+
+<ul>
+  <li>Subject: subject</li>
+  <li>From: username</li>
+  <li>Message: txt</li>
+</ul>
+
+<a class="return" href="/account/inbox">Return to Inbox</a>
+
+<button>Reply</button>
+<button>Mark as Read</button>
+<button>Archive Message</button>
+<button>Delete Message</button>

@@ -1,0 +1,42 @@
+<!-- A content heading -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+<!-- A message -->
+<%- messages() %>
+
+<!-- Display any errors. -->
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+
+<p>This is an internal system only. Recipients are limited to the three generic accounts.</p>
+
+<!-- Flash message: yellow background -->
+<p>All inputs are required.</p>
+
+<form>
+  <label>To: <br></label>
+  <select name="" id="" required>
+    <option value="">Select a recipient: </option>
+    <option value=""></option>
+    <option value=""></option>
+  </select>
+
+  <label>Subject: <br>
+    <input type="text" name="" required>
+  </label>
+
+  <label>Message: <br>
+    <textarea name="" id="" cols="30" rows="10" required></textarea>
+  </label>
+
+  <button>Send</button>
+</form>

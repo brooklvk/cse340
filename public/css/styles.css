@@ -111,6 +111,30 @@ button {
   background-color: rgb(254, 171, 139);
 }
 
+/* Tables */
+
+table {
+  border-collapse: collapse;
+  width: 700px;
+  margin: 0 20px;
+}
+
+th {
+  padding: 5px;
+  font-size: 1.2em;
+}
+
+table tr th {
+  font-weight: normal;
+}
+
+table tr:first-of-type th {
+  font-weight: bold;
+}
+
+table tr:nth-of-type(even) {
+  background-color: lightgray;
+}
 
 /* HOME PAGE */
 
@@ -289,6 +313,12 @@ button {
 
 /* MANAGE classification / detail pages */
 
+
+/* INBOX and other message pages */
+
+.return {
+  margin: 20px;
+}
 
 
 /* MEDIA QUERY */
