@@ -252,4 +252,41 @@ async function changePassword(req, res) {
   }
 }
 
+
+// messages 
+
+/* ***************************
+ *  Build message table by account_id/message_to view 
+ * ************************** */
+// invCont.buildByClassificationId = async function (req, res, next) {
+//   const classification_id = req.params.classificationId
+//   const data = await invModel.getInventoryByClassificationId(classification_id)
+//   const grid = await utilities.buildClassificationGrid(data)
+//   let nav = await utilities.getNav()
+//   const className = data[0].classification_name
+//   res.render("./inventory/classification", {
+//     title: className + " vehicles",
+//     nav,
+//     grid,
+//     errors: null,
+//   })
+// }
+
+async function buildMessagesByAccountId (req, res, next) {
+  const classification_id = req.params.classificationId
+  const data = await invModel.getInventoryByClassificationId(classification_id)
+  const grid = await utilities.buildClassificationGrid(data)
+  let nav = await utilities.getNav()
+  const className = data[0].classification_name
+  res.render("./inventory/classification", {
+    title: className + " vehicles",
+    nav,
+    grid,
+    errors: null,
+  })
+}
+
+
+
+
 module.exports = { buildLogin, buildRegister, buildManagement, buildUpdate, buildInbox, buildArchive, buildMessage, buildNewMessage, registerAccount, accountLogin, updateAccount, changePassword }

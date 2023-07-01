@@ -79,4 +79,7 @@ async function changePassword(account_password, account_id) {
   }
 }
 
+//message_received data type: timestamp with time zone 
+
+
 module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateAccount, changePassword };
