@@ -110,8 +110,3 @@ console.log(`app listening on ${host}:${port}`)
 // account_lastname: User
 // account_email: manager@340.edu
 // account_password: I@mAnAdm!n1strat0r
-
-
-// today: get messages sql code, put in db-sql-code.sql 
-// and figure out when 90 days is up to reset db 
-

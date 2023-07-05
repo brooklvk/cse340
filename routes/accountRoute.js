@@ -21,7 +21,7 @@ router.get("/account-update", utilities.checkLogin, utilities.handleErrors(accou
 router.get("/logout", utilities.deleteCookie, utilities.handleErrors(accountController.buildLogin));
 
 // Route for inbox 
-router.get("/inbox:accountId", utilities.checkLogin, utilities.handleErrors(accountController.buildInbox));
+router.get("/inbox/:accountId", utilities.checkLogin, utilities.handleErrors(accountController.buildMessagesByAccountId));
 
 // Route for archive 
 router.get("/archive", utilities.checkLogin, utilities.handleErrors(accountController.buildArchive));

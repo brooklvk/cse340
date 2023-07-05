@@ -90,6 +90,31 @@ Util.buildDetailGrid = async function(data) {
   return detailGrid
 }
 
+/* **************************************
+* Build the message table HTML 
+* ************************************ */
+Util.buildMessageTable = async function(messageData) {
+  let table
+  if(messageData.length > 0){
+    table = '<table>'
+    table += '<tr><th>Received</th><th>Subject</th><th>From</th><th>Read</th></tr>'
+    data.forEach(message => { 
+      table += '<tr>'
+
+      table += '<th>' + message.message_received + '</th>'
+      table += '<th>' + '<a href="/account/message">' + message.message_subject + '</a>' + '</th>'
+      table += '<th>' + locals.accountData.account_firstname + '</th>'
+      table += '<th>' + message.message_read + '</th>'
+
+      table += '</tr>'      
+    })
+    table += '</table>'
+  } else { 
+    table += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
+  }
+  return table 
+}
+
 Util.getClassificationOption = async function(req, res, next) {
   let data = await invModel.getClassifications()
   let opt = '<select id="classificationList" name="classification_id">'
@@ -166,19 +191,6 @@ Util.checkManagerLogin = (req, res, next) => {
     return res.redirect("/account/login")
   }
 }
-
-// find build classification grid/details functions 
-
-// function to build inbox view table 
-// info from model- db query
-// copy builddetailgrid func OR buildotherthing 
-//also getclassificationoptions 
-
-// in controller, pull this function and from ?
-
-
-
-
 
 /* ****************************************
  * Middleware For Handling Errors

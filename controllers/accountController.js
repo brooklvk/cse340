@@ -49,14 +49,14 @@ async function buildUpdate(req, res, next) {
 }
 
 // Deliver inbox view (access through account manage page)
-async function buildInbox(req, res, next) {
-  let nav = await utilities.getNav()
-  res.render("account/inbox", {
-    title: "(username) Inbox",
-    nav,
-    errors: null,
-  });
-}
+// async function buildInbox(req, res, next) {
+//   let nav = await utilities.getNav()
+//   res.render("account/inbox", {
+//     title: "(username) Inbox",
+//     nav,
+//     errors: null,
+//   });
+// }
 
 // Deliver archive view (access through inbox page)
 async function buildArchive(req, res, next) {
@@ -252,41 +252,25 @@ async function changePassword(req, res) {
   }
 }
 
-
-// messages 
-
 /* ***************************
  *  Build message table by account_id/message_to view 
  * ************************** */
-// invCont.buildByClassificationId = async function (req, res, next) {
-//   const classification_id = req.params.classificationId
-//   const data = await invModel.getInventoryByClassificationId(classification_id)
-//   const grid = await utilities.buildClassificationGrid(data)
-//   let nav = await utilities.getNav()
-//   const className = data[0].classification_name
-//   res.render("./inventory/classification", {
-//     title: className + " vehicles",
-//     nav,
-//     grid,
-//     errors: null,
-//   })
-// }
-
 async function buildMessagesByAccountId (req, res, next) {
-  const classification_id = req.params.classificationId
-  const data = await invModel.getInventoryByClassificationId(classification_id)
-  const grid = await utilities.buildClassificationGrid(data)
+  console.log("This runs!")
+  let account_id = req.params.accountId
+  account_id = parseInt(account_id.slice(1,3))
+  console.log(account_id)
+  const messageData = await accountModel.getMessageData(account_id)
+  console.log(messageData[0])
+  const table = await utilities.buildMessageTable(messageData[0])
+  console.log(table)
   let nav = await utilities.getNav()
-  const className = data[0].classification_name
-  res.render("./inventory/classification", {
-    title: className + " vehicles",
+  res.render("account/inbox", {
+    title: messageData[0].message_to + "Inbox",
     nav,
-    grid,
+    table,
     errors: null,
   })
 }
 
-
-
-
-module.exports = { buildLogin, buildRegister, buildManagement, buildUpdate, buildInbox, buildArchive, buildMessage, buildNewMessage, registerAccount, accountLogin, updateAccount, changePassword }
+module.exports = { buildLogin, buildRegister, buildManagement, buildUpdate, buildArchive, buildMessage, buildNewMessage, registerAccount, accountLogin, updateAccount, changePassword, buildMessagesByAccountId }
