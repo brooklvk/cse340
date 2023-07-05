@@ -64,4 +64,18 @@ router.post(
   utilities.handleErrors(accountController.changePassword)  
 )
 
+
+
+router.post( 
+  "/mark-read"
+)
+
+router.post(
+  "/mark-archived"
+)
+
+router.post(
+  "/delete-message"
+)
+
 module.exports = router;

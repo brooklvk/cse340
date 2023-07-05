@@ -96,10 +96,10 @@ async function getMessageData (account_id) {
 /* *****************************
 *   Insert new message 
 * *************************** */
-async function createMessage(message_from, message_to, message_subject, message_read, message_body, message_archived, message_received, account_id){
+async function createMessage(message_from, message_to, message_subject, message_read, message_body, message_archived, message_received){
   try {
-    const sql = "INSERT INTO public.message (message_from, message_to, message_subject, message_read, message_body, message_archived, message_received, account_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)"
-    return await pool.query(sql, [message_from, message_to, message_subject, message_read, message_body, message_archived, message_received, account_id])
+    const sql = "INSERT INTO public.message VALUES (default, $1, $2, $3, $4, $5, $6, $7)"
+    return await pool.query(sql, [message_from, message_to, message_subject, message_read, message_body, message_archived, message_received])
   } catch (error) {
     return error.message
   }

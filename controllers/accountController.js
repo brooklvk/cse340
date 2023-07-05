@@ -48,15 +48,22 @@ async function buildUpdate(req, res, next) {
   });
 }
 
-// Deliver inbox view (access through account manage page)
-// async function buildInbox(req, res, next) {
-//   let nav = await utilities.getNav()
-//   res.render("account/inbox", {
-//     title: "(username) Inbox",
-//     nav,
-//     errors: null,
-//   });
-// }
+/* ***************************
+ * Deliver inbox view (access through account manage page)
+ *  Build message table by account_id/message_to view 
+ * ************************** */
+async function buildMessagesByAccountId (req, res, next) {
+  const account_id = parseInt(req.params.accountId.slice(1,3))
+  const messageData = await accountModel.getMessageData(account_id)
+  const table = await utilities.buildMessageTable(messageData)
+  let nav = await utilities.getNav()
+  res.render("account/inbox", {
+    title: messageData[0].account_firstname + " " + messageData[0].account_lastname + " Inbox",
+    nav,
+    table,
+    errors: null,
+  })
+}
 
 // Deliver archive view (access through inbox page)
 async function buildArchive(req, res, next) {
@@ -250,26 +257,6 @@ async function changePassword(req, res) {
       errors: null,
     })
   }
-}
-
-/* ***************************
- *  Build message table by account_id/message_to view 
- * ************************** */
-async function buildMessagesByAccountId (req, res, next) {
-  console.log("This runs!")
-  const account_id = parseInt(req.params.accountId.slice(1,3))
-  console.log(account_id)
-  const messageData = await accountModel.getMessageData(account_id)
-  console.log(messageData)
-  const table = await utilities.buildMessageTable(messageData)
-  console.log("table" + table)
-  let nav = await utilities.getNav()
-  res.render("account/inbox", {
-    title: messageData[0].account_firstname + " " + messageData[0].account_lastname + " Inbox",
-    nav,
-    table,
-    errors: null,
-  })
 }
 
 module.exports = { buildLogin, buildRegister, buildManagement, buildUpdate, buildArchive, buildMessage, buildNewMessage, registerAccount, accountLogin, updateAccount, changePassword, buildMessagesByAccountId }

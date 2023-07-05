@@ -26,8 +26,8 @@
 <a class="return" href="/account/inbox">Return to Inbox</a>
 
 <form>
-  <button formaction="/account/new-message" formmethod="">Reply</button>
-  <button formaction="" formmethod="post">Mark as Read</button>
-  <button formaction="" formmethod="post">Archive Message</button>
-  <button formaction="" formmethod="post">Delete Message</button>
+  <button formaction="/account/new-message" formmethod="get">Reply</button>
+  <button formaction="/account/mark-read" formmethod="post">Mark as Read</button>
+  <button formaction="/account/mark-archived" formmethod="post">Archive Message</button>
+  <button formaction="/account/delete-message" formmethod="post">Delete Message</button>
 </form>
