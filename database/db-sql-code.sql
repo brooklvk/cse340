@@ -252,7 +252,7 @@ SET
 
 -- Table: public.message
 
-DROP TABLE IF EXISTS public.message;
+-- DROP TABLE IF EXISTS public.message;
 
 CREATE TABLE IF NOT EXISTS public.message
 (
@@ -262,8 +262,8 @@ CREATE TABLE IF NOT EXISTS public.message
     message_subject character varying COLLATE pg_catalog."default" NOT NULL,
     message_read boolean NOT NULL,
     message_body character varying COLLATE pg_catalog."default" NOT NULL,
-    message_received timestamp with time zone NOT NULL,
     message_archived boolean NOT NULL,
+    message_received timestamp without time zone NOT NULL,
     CONSTRAINT message_pkey PRIMARY KEY (message_id),
     CONSTRAINT account_from_fk FOREIGN KEY (message_from)
         REFERENCES public.account (account_id) MATCH SIMPLE

@@ -257,16 +257,15 @@ async function changePassword(req, res) {
  * ************************** */
 async function buildMessagesByAccountId (req, res, next) {
   console.log("This runs!")
-  let account_id = req.params.accountId
-  account_id = parseInt(account_id.slice(1,3))
+  const account_id = parseInt(req.params.accountId.slice(1,3))
   console.log(account_id)
   const messageData = await accountModel.getMessageData(account_id)
-  console.log(messageData[0])
-  const table = await utilities.buildMessageTable(messageData[0])
-  console.log(table)
+  console.log(messageData)
+  const table = await utilities.buildMessageTable(messageData)
+  console.log("table" + table)
   let nav = await utilities.getNav()
   res.render("account/inbox", {
-    title: messageData[0].message_to + "Inbox",
+    title: messageData[0].account_firstname + " " + messageData[0].account_lastname + " Inbox",
     nav,
     table,
     errors: null,

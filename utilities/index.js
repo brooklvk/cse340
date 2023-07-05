@@ -95,23 +95,25 @@ Util.buildDetailGrid = async function(data) {
 * ************************************ */
 Util.buildMessageTable = async function(messageData) {
   let table
-  if(messageData.length > 0){
-    table = '<table>'
-    table += '<tr><th>Received</th><th>Subject</th><th>From</th><th>Read</th></tr>'
-    data.forEach(message => { 
-      table += '<tr>'
+  table = '<table>'
+  table += '<tr><th>Received</th><th>Subject</th><th>From</th><th>Read</th></tr>'
 
-      table += '<th>' + message.message_received + '</th>'
-      table += '<th>' + '<a href="/account/message">' + message.message_subject + '</a>' + '</th>'
-      table += '<th>' + locals.accountData.account_firstname + '</th>'
-      table += '<th>' + message.message_read + '</th>'
+  messageData.forEach(message => {
+    table += '<tr>'
 
-      table += '</tr>'      
-    })
-    table += '</table>'
-  } else { 
-    table += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
-  }
+    let received = message.message_received
+    received = received.toLocaleString()
+
+    table += '<th>' + received + '</th>'
+    table += '<th>' + '<a href="/account/message">' + message.message_subject + '</a>' + '</th>'
+    table += '<th>' + message.account_firstname + " " + message.account_lastname + '</th>'
+    table += '<th>' + message.message_read + '</th>'
+
+    table += '</tr>' 
+  })  
+
+  table += '</table>'
+
   return table 
 }
 
