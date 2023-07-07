@@ -66,7 +66,7 @@ router.post(
 
 // Process mark message read (button in message view)
 router.post( 
-  "/mark-read",
+  "/mark-read/:message_id",
   utilities.handleErrors(accountController.markRead)
 )
 
@@ -78,8 +78,14 @@ router.post(
 
 // Process delete message (button in message view)
 router.post(
-  "/delete-message",
+  "/delete-message/:message_id",
   utilities.handleErrors(accountController.deleteMessage)
+)
+
+// Process send new message 
+router.post(
+  "/send-message",
+  utilities.handleErrors(accountController.sendMessage)
 )
 
 module.exports = router;

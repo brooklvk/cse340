@@ -22,21 +22,22 @@
 <!-- Flash message: yellow background -->
 <p>All inputs are required.</p>
 
-<form>
+<form action="/account/send-message" method="post">
   <label>To: <br></label>
   <select name="" id="" required>
     <option value="">Select a recipient: </option>
-    <option value=""></option>
-    <option value=""></option>
+    <option value="12">Basic Client</option>
+    <option value="13">Happy Employee</option>
+    <option value="14">Manager User</option>
   </select>
 
   <label>Subject: <br>
-    <input type="text" name="" required>
+    <input type="text" name="subject" required>
   </label>
 
   <label>Message: <br>
-    <textarea name="" id="" cols="30" rows="10" required></textarea>
+    <textarea name="body" id="" cols="30" rows="10" required></textarea>
   </label>
 
-  <button>Send</button>
+  <button type="submit">Send</button>
 </form>

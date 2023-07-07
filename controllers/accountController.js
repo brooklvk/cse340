@@ -325,4 +325,11 @@ async function deleteMessage(req, res) {
 }
 
 
-module.exports = { buildLogin, buildRegister, buildManagement, buildUpdate, buildArchive, buildMessage, buildNewMessage, registerAccount, accountLogin, updateAccount, changePassword, buildMessagesByAccountId, markRead, markArchived, deleteMessage }
+// Process send new message 
+async function sendMessage(req, res) {
+  accountModel.createMessage(message_from, message_to, message_subject, message_body, message_received)
+  
+}
+
+
+module.exports = { buildLogin, buildRegister, buildManagement, buildUpdate, buildArchive, buildMessage, buildNewMessage, registerAccount, accountLogin, updateAccount, changePassword, buildMessagesByAccountId, markRead, markArchived, deleteMessage, sendMessage }

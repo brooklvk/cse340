@@ -96,21 +96,10 @@ app.listen(port, () => {
 console.log(`app listening on ${host}:${port}`)
 });
 
-
-// Logins: 
-// account_firstname: Basic
-// account_lastname: Client
-// account_email: basic@340.edu
-// account_password: I@mABas1cCl!3nt
-// account_firstname: Happy
-// account_lastname: Employee
-// account_email: happy@340.edu
-// account_password: I@mAnEmpl0y33
-// account_firstname: Manager
-// account_lastname: User
-// account_email: manager@340.edu
-// account_password: I@mAnAdm!n1strat0r
-
-
 // To see sender's name in inbox, message, archive (and new message??) views, 
 // need to change message_from data type to charvar and link to account.firstname (and last?)
+
+
+// In new-message view.ejs make option values locals.account_id s 
+// and only show the ones that aren't the current user 
+
