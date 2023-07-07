@@ -18,16 +18,16 @@
 <% } %>
 
 <ul>
-  <li>Subject: subject</li>
-  <li>From: username</li>
-  <li>Message: txt</li>
+  <li>Subject: <%= title %></li>
+  <li>From: <%= locals.messageData.message_from %></li>
+  <li>Message: <%= locals.messageData.message_body %></li>
 </ul>
 
-<a class="return" href="/account/inbox">Return to Inbox</a>
+<a class="return" href='/account/inbox/:<%= locals.accountData.account_id %>'>Return to Inbox</a>
 
 <form>
-  <button formaction="/account/new-message" formmethod="get">Reply</button>
+  <button formaction='/account/message/:<%= locals.accountData.account_id %>' formmethod="get">Reply</button>
   <button formaction="/account/mark-read" formmethod="post">Mark as Read</button>
-  <button formaction="/account/mark-archived" formmethod="post">Archive Message</button>
+  <button formaction='/account/mark-archived/:<%= locals.messageData.message_id %>' formmethod="post">Archive Message</button>
   <button formaction="/account/delete-message" formmethod="post">Delete Message</button>
 </form>

@@ -89,7 +89,21 @@ async function getMessageData (account_id) {
       [account_id])
     return result.rows
   } catch (error) {
-    return new Error("No matching account found")
+    return new Error("No matching messages found")
+  }
+}
+
+/* *****************************
+* Return message data using message id 
+* ***************************** */
+async function getMessageById (message_id) {
+  try {
+    const result = await pool.query(
+      'SELECT * FROM message JOIN account ON message.message_to = account.account_id WHERE message_id = $1',
+      [message_id])
+    return result.rows
+  } catch (error) {
+    return new Error("No matching message found")
   }
 }
 
@@ -122,10 +136,10 @@ async function changeMessageRead(message_read, account_id) {
 /* *****************************
 *   Change a message (archived)
 * *************************** */
-async function changeMessageArchived(message_archived, account_id) {
+async function changeMessageArchived(message_id) {
   try {
-    const sql = "UPDATE public.message SET message_archived = $1 WHERE account_id = $2"
-    const result = await pool.query(sql, [message_archived, account_id])
+    const sql = "UPDATE public.message SET message_archived = 'true' WHERE message_id = $1"
+    const result = await pool.query(sql, [message_id])
     return result.rows
   } catch (error) {
     return error.message
@@ -145,4 +159,4 @@ async function deleteMessage(account_id) {
   }
 }
 
-module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateAccount, changePassword, getMessageData, createMessage, changeMessageRead, changeMessageArchived, deleteMessage };
+module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateAccount, changePassword, getMessageData, getMessageById, createMessage, changeMessageRead, changeMessageArchived, deleteMessage };

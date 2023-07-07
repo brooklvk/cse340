@@ -105,8 +105,8 @@ Util.buildMessageTable = async function(messageData) {
     received = received.toLocaleString()
 
     table += '<th>' + received + '</th>'
-    table += '<th>' + '<a href="/account/message">' + message.message_subject + '</a>' + '</th>'
-    table += '<th>' + message.account_firstname + " " + message.account_lastname + '</th>'
+    table += '<th>' + "<a href='/account/message/:" + message.message_to + "'>" + message.message_subject + '</a>' + '</th>'
+    table += '<th>' + message.message_from + '</th>'
     table += '<th>' + message.message_read + '</th>'
 
     table += '</tr>' 
@@ -115,6 +115,34 @@ Util.buildMessageTable = async function(messageData) {
   table += '</table>'
 
   return table 
+}
+
+/* **************************************
+* Build the message archived table HTML 
+* ************************************ */
+Util.buildMessageArchived = async function(messageData) {
+  let archived
+  archived = '<table>'
+  archived += '<tr><th>Received</th><th>Subject</th><th>From</th><th>Read</th></tr>'
+
+  messageData.forEach(message => {
+    archived += '<tr>'
+
+    let received = message.message_received
+    received = received.toLocaleString()
+
+    archived += '<th>' + received + '</th>'
+    archived += '<th>' + "<a href='/account/message/:" + message.message_to + "'>" + message.message_subject + '</a>' + '</th>'
+    archived += '<th>' + message.message_from + '</th>'
+    archived += '<th>' + message.message_read + '</th>'
+
+    archived += '</tr>' 
+  });
+
+  archived += '</table>'
+
+  return archived 
+
 }
 
 Util.getClassificationOption = async function(req, res, next) {

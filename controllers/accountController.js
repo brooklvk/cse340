@@ -49,12 +49,13 @@ async function buildUpdate(req, res, next) {
 }
 
 /* ***************************
- * Deliver inbox view (access through account manage page)
+ *  Deliver inbox view (access through account manage page)
  *  Build message table by account_id/message_to view 
  * ************************** */
 async function buildMessagesByAccountId (req, res, next) {
   const account_id = parseInt(req.params.accountId.slice(1,3))
   const messageData = await accountModel.getMessageData(account_id)
+  res.locals.messageData = messageData[0]
   const table = await utilities.buildMessageTable(messageData)
   let nav = await utilities.getNav()
   res.render("account/inbox", {
@@ -67,19 +68,29 @@ async function buildMessagesByAccountId (req, res, next) {
 
 // Deliver archive view (access through inbox page)
 async function buildArchive(req, res, next) {
+  const account_id = parseInt(req.params.accountId.slice(1,3))
+  const messageData = await accountModel.getMessageData(account_id)
+  res.locals.messageData = messageData[0]
+  console.log(messageData[0])
+  const archived = await utilities.buildMessageArchived(messageData)
+  console.log(archived)
   let nav = await utilities.getNav()
   res.render("account/archive", {
-    title: "(username) Archives",
+    title: messageData[0].account_firstname + " " + messageData[0].account_lastname + " Archives",
     nav,
+    archived,
     errors: null,
   });
 }
 
 // Deliver message view (access through inbox OR archive)
 async function buildMessage(req, res, next) {
+  const account_id = parseInt(req.params.accountId.slice(1,3))
+  const messageData = await accountModel.getMessageData(account_id)
+  res.locals.messageData = messageData[0]
   let nav = await utilities.getNav()
   res.render("account/message", {
-    title: "(Subject)",
+    title: messageData[0].message_subject,
     nav,
     errors: null,
   });
@@ -259,4 +270,45 @@ async function changePassword(req, res) {
   }
 }
 
-module.exports = { buildLogin, buildRegister, buildManagement, buildUpdate, buildArchive, buildMessage, buildNewMessage, registerAccount, accountLogin, updateAccount, changePassword, buildMessagesByAccountId }
+// Process mark message as read 
+async function markRead(req, res) {
+
+}
+
+// Process mark message as archived 
+async function markArchived(req, res) {
+  let nav = await utilities.getNav()
+  const message_id = parseInt(req.params.message_id.slice(1,2))
+  const archived = await accountModel.changeMessageArchived(message_id)
+  const messageData = await accountModel.getMessageById(message_id)
+  console.log("This runs " + messageData[0])
+  res.locals.messageData = messageData[0]
+  const table = await utilities.buildMessageTable(messageData)
+  if (archived) {
+    req.flash(
+      "notice",
+      `Message archived.`
+    )
+    res.status(201).render("account/inbox", {
+      title: messageData[0].account_firstname + " " + messageData[0].account_lastname + " Inbox",
+      nav,
+      table,
+      errors: null,
+    })
+  } else {
+    req.flash("notice", "Sorry, message archive failed.")
+    res.status(501).render("account/message", {
+      title: messageData[0].message_subject,
+      nav,
+      errors: null,
+    })
+  }
+}
+
+// Process delete message 
+async function deleteMessage(req, res) {
+
+}
+
+
+module.exports = { buildLogin, buildRegister, buildManagement, buildUpdate, buildArchive, buildMessage, buildNewMessage, registerAccount, accountLogin, updateAccount, changePassword, buildMessagesByAccountId, markRead, markArchived, deleteMessage }

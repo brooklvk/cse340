@@ -18,8 +18,8 @@
 <% } %>
 
 <ul>
-    <li><a href="/account/new-message">Create New Message</a></li>
-    <li><a href="/account/archive">View () Archived Messages</a></li>
+    <li><a href='/account/new-message/:<%= locals.accountData.account_id %>'>Create New Message</a></li>
+    <li><a href='/account/archive/:<%= locals.accountData.account_id %>'>View () Archived Messages</a></li>
 </ul>
 
 <!-- <table>

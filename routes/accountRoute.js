@@ -24,13 +24,13 @@ router.get("/logout", utilities.deleteCookie, utilities.handleErrors(accountCont
 router.get("/inbox/:accountId", utilities.checkLogin, utilities.handleErrors(accountController.buildMessagesByAccountId));
 
 // Route for archive 
-router.get("/archive", utilities.checkLogin, utilities.handleErrors(accountController.buildArchive));
+router.get("/archive/:accountId", utilities.checkLogin, utilities.handleErrors(accountController.buildArchive));
 
 // Route for read a message 
-router.get("/message", utilities.checkLogin, utilities.handleErrors(accountController.buildMessage));
+router.get("/message/:accountId", utilities.checkLogin, utilities.handleErrors(accountController.buildMessage));
 
 // Route for write new message 
-router.get("/new-message", utilities.checkLogin, utilities.handleErrors(accountController.buildNewMessage));
+router.get("/new-message/:accountId", utilities.checkLogin, utilities.handleErrors(accountController.buildNewMessage));
 
 // Process the login request
 router.post(
@@ -64,18 +64,22 @@ router.post(
   utilities.handleErrors(accountController.changePassword)  
 )
 
-
-
+// Process mark message read (button in message view)
 router.post( 
-  "/mark-read"
+  "/mark-read",
+  utilities.handleErrors(accountController.markRead)
 )
 
+// Process mark message archived (button in message view)
 router.post(
-  "/mark-archived"
+  "/mark-archived/:message_id",
+  utilities.handleErrors(accountController.markArchived)
 )
 
+// Process delete message (button in message view)
 router.post(
-  "/delete-message"
+  "/delete-message",
+  utilities.handleErrors(accountController.deleteMessage)
 )
 
 module.exports = router;
