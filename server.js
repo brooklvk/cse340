@@ -110,3 +110,7 @@ console.log(`app listening on ${host}:${port}`)
 // account_lastname: User
 // account_email: manager@340.edu
 // account_password: I@mAnAdm!n1strat0r
+
+
+// To see sender's name in inbox, message, archive (and new message??) views, 
+// need to change message_from data type to charvar and link to account.firstname (and last?)

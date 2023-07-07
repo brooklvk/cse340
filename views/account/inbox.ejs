@@ -19,23 +19,7 @@
 
 <ul>
     <li><a href='/account/new-message/:<%= locals.accountData.account_id %>'>Create New Message</a></li>
-    <li><a href='/account/archive/:<%= locals.accountData.account_id %>'>View () Archived Messages</a></li>
+    <li><a href='/account/archive/:<%= locals.accountData.account_id %>'>View <%= locals.numArchived %> Archived Messages</a></li>
 </ul>
-
-<!-- <table>
-  <tr>
-    <th>Received</th>
-    <th>Subject</th>
-    <th>From</th>
-    <th>Read</th>
-  </tr>
-
-  <tr>
-    <th>Time received</th>
-    <th><a href="/account/message">Subject</a></th>
-    <th>User firstname</th>
-    <th>true/false</th>
-  </tr>
-</table> -->
 
 <%- table %>

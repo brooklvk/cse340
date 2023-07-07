@@ -56,6 +56,14 @@ async function buildMessagesByAccountId (req, res, next) {
   const account_id = parseInt(req.params.accountId.slice(1,3))
   const messageData = await accountModel.getMessageData(account_id)
   res.locals.messageData = messageData[0]
+  let numArchived = 0;
+  messageData.forEach(message => {
+    if (message.message_archived) {
+      numArchived += 1
+      }
+    }
+  );
+  res.locals.numArchived = numArchived;
   const table = await utilities.buildMessageTable(messageData)
   let nav = await utilities.getNav()
   res.render("account/inbox", {
@@ -71,9 +79,7 @@ async function buildArchive(req, res, next) {
   const account_id = parseInt(req.params.accountId.slice(1,3))
   const messageData = await accountModel.getMessageData(account_id)
   res.locals.messageData = messageData[0]
-  console.log(messageData[0])
   const archived = await utilities.buildMessageArchived(messageData)
-  console.log(archived)
   let nav = await utilities.getNav()
   res.render("account/archive", {
     title: messageData[0].account_firstname + " " + messageData[0].account_lastname + " Archives",
@@ -283,6 +289,14 @@ async function markArchived(req, res) {
   const messageData = await accountModel.getMessageById(message_id)
   console.log("This runs " + messageData[0])
   res.locals.messageData = messageData[0]
+  let numArchived = 0;
+  messageData.forEach(message => {
+    if (message.message_archived) {
+      numArchived += 1
+      }
+    }
+  );
+  res.locals.numArchived = numArchived;
   const table = await utilities.buildMessageTable(messageData)
   if (archived) {
     req.flash(
