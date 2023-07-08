@@ -31,6 +31,17 @@ async function buildRegister(req, res, next) {
 // Deliver account management view 
 async function buildManagement(req, res, next) {
   let nav = await utilities.getNav()
+  const accountId = res.locals.accountData.account_id 
+  const messageData = await accountModel.getAllMessages(accountId)
+  console.log(messageData)
+  let unread = 0
+  messageData.forEach(message => {
+    if (!message.read) {
+      unread += 1
+    }
+  })
+  res.locals.unread = unread 
+
   res.render("account/account-management", {
     title: "Manage Account",
     nav,

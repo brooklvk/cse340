@@ -80,7 +80,7 @@ async function changePassword(account_password, account_id) {
 }
 
 /* *****************************
-* Return message data using account id 
+* Return message data for inbox using account id 
 * ***************************** */
 async function getMessageData (account_id) {
   try {
@@ -94,12 +94,26 @@ async function getMessageData (account_id) {
 }
 
 /* *****************************
-* Return message data for archive using account id 
+* Return message data for archives by account id 
 * ***************************** */
 async function getArchiveData (account_id) {
   try {
     const result = await pool.query(
       'SELECT * FROM message JOIN account ON message.message_from = account.account_id WHERE message_to = $1 AND message_archived = true',
+      [account_id])
+    return result.rows
+  } catch (error) {
+    return new Error("No matching messages found")
+  }
+}
+
+/* *****************************
+* Return all message data (archived/not) by account id 
+* ***************************** */
+async function getAllMessages (account_id) {
+  try {
+    const result = await pool.query(
+      'SELECT * FROM message JOIN account ON message.message_from = account.account_id WHERE message_to = $1',
       [account_id])
     return result.rows
   } catch (error) {
@@ -173,4 +187,4 @@ async function deleteMessage(account_id) {
   }
 }
 
-module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateAccount, changePassword, getMessageData, getMessageById, createMessage, changeMessageRead, changeMessageArchived, deleteMessage, getArchiveData };
+module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateAccount, changePassword, getMessageData, getMessageById, createMessage, changeMessageRead, changeMessageArchived, deleteMessage, getArchiveData, getAllMessages };
