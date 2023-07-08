@@ -27,7 +27,7 @@
 
 <form>
   <button formaction='/account/message/:<%= locals.accountData.account_id %>' formmethod="get">Reply</button>
-  <button formaction="/account/mark-read" formmethod="post">Mark as Read</button>
+  <button formaction='/account/mark-read/:<%= locals.messageData.message_id %>' formmethod="post">Mark as Read</button>
   <button formaction='/account/mark-archived/:<%= locals.messageData.message_id %>' formmethod="post">Archive Message</button>
-  <button formaction="/account/delete-message" formmethod="post">Delete Message</button>
+  <button formaction='/account/delete-message/:<%= locals.messageData.message_id %>' formmethod="post">Delete Message</button>
 </form>

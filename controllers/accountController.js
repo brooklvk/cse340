@@ -33,7 +33,7 @@ async function buildManagement(req, res, next) {
   let nav = await utilities.getNav()
   const accountId = res.locals.accountData.account_id 
   const messageData = await accountModel.getAllMessages(accountId)
-  console.log(messageData)
+
   let unread = 0
   messageData.forEach(message => {
     if (!message.read) {
@@ -66,8 +66,8 @@ async function buildUpdate(req, res, next) {
 async function buildMessagesByAccountId (req, res, next) {
   const account_id = parseInt(req.params.accountId.slice(1,3))
   const messageData = await accountModel.getMessageData(account_id)
-  console.log(messageData)
   res.locals.messageData = messageData[0]
+
   let numArchived = 0;
   const archiveData = await accountModel.getArchiveData(account_id)
   archiveData.forEach(message => {
@@ -77,8 +77,21 @@ async function buildMessagesByAccountId (req, res, next) {
     }
   );
   res.locals.numArchived = numArchived;
+
   const table = await utilities.buildMessageTable(messageData)
   let nav = await utilities.getNav()
+  const accountId = res.locals.accountData.account_id 
+
+  const readData = await accountModel.getAllMessages(accountId)
+
+  let unread = 0
+  readData.forEach(message => {
+    if (!message.read) {
+      unread += 1
+    }
+  })
+  res.locals.unread = unread 
+
   try {
     res.render("account/inbox", {
       title: res.locals.accountData.account_firstname + " " + res.locals.accountData.account_lastname + " Inbox",
