@@ -22,9 +22,9 @@
 <!-- Flash message: yellow background -->
 <p>All inputs are required.</p>
 
-<form action="/account/send-message" method="post">
+<form action='/account/send-message/:<%= locals.accountData.accountId %>' method="post">
   <label>To: <br></label>
-  <select name="" id="" required>
+  <select name="message_to" id="select_to" required>
     <option value="">Select a recipient: </option>
     <option value="12">Basic Client</option>
     <option value="13">Happy Employee</option>
@@ -32,12 +32,15 @@
   </select>
 
   <label>Subject: <br>
-    <input type="text" name="subject" required>
+    <input type="text" name="message_subject" value="<%= locals.message_subject %>" required>
   </label>
 
   <label>Message: <br>
-    <textarea name="body" id="" cols="30" rows="10" required></textarea>
+    <textarea name="message_body" id="" cols="30" rows="10" required><%= locals.message_body %></textarea>
   </label>
 
   <button type="submit">Send</button>
+
+  <input type="hidden" name="message_from" value='<%= locals.accountId %>'>
+
 </form>

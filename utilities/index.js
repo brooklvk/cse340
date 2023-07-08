@@ -1,3 +1,4 @@
+const { getAccountByEmail } = require("../models/account-model")
 const invModel = require("../models/inventory-model")
 const Util = {}
 const jwt = require("jsonwebtoken")
@@ -106,7 +107,7 @@ Util.buildMessageTable = async function(messageData) {
 
     table += '<th>' + received + '</th>'
     table += '<th>' + "<a href='/account/message/:" + message.message_to + "'>" + message.message_subject + '</a>' + '</th>'
-    table += '<th>' + message.message_from + '</th>'
+    table += '<th>' + message.account_firstname + " " + message.account_lastname + '</th>'
     table += '<th>' + message.message_read + '</th>'
 
     table += '</tr>' 
@@ -126,17 +127,19 @@ Util.buildMessageArchived = async function(messageData) {
   archived += '<tr><th>Received</th><th>Subject</th><th>From</th><th>Read</th></tr>'
 
   messageData.forEach(message => {
-    archived += '<tr>'
+    if (message.message_archived) {
+      archived += '<tr>'
 
     let received = message.message_received
     received = received.toLocaleString()
 
     archived += '<th>' + received + '</th>'
     archived += '<th>' + "<a href='/account/message/:" + message.message_to + "'>" + message.message_subject + '</a>' + '</th>'
-    archived += '<th>' + message.message_from + '</th>'
+    archived += '<th>' + message.account_firstname + " " + message.account_lastname + '</th>'
     archived += '<th>' + message.message_read + '</th>'
 
     archived += '</tr>' 
+    }
   });
 
   archived += '</table>'
@@ -158,6 +161,11 @@ Util.getClassificationOption = async function(req, res, next) {
 
   return opt 
 }
+
+// Util.getAccountOptions = async function (selected=null) {
+//   // make this getallaccounts?? 
+//   let accountData = await accountModel.getAccountById(account_id)
+// }
 
 /* ****************************************
 * Middleware to check token validity

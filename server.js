@@ -103,3 +103,7 @@ console.log(`app listening on ${host}:${port}`)
 // In new-message view.ejs make option values locals.account_id s 
 // and only show the ones that aren't the current user 
 
+
+// Mark as UNread if read=true 
+
+// stretch challenge: instead of flash msg/account manage page when empty inbox, go to inbox page still and flash msg 

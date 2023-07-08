@@ -85,7 +85,21 @@ async function changePassword(account_password, account_id) {
 async function getMessageData (account_id) {
   try {
     const result = await pool.query(
-      'SELECT * FROM message JOIN account ON message.message_to = account.account_id WHERE message_to = $1',
+      'SELECT * FROM message JOIN account ON message.message_from = account.account_id WHERE message_to = $1 AND message_archived = false',
+      [account_id])
+    return result.rows
+  } catch (error) {
+    return new Error("No matching messages found")
+  }
+}
+
+/* *****************************
+* Return message data for archive using account id 
+* ***************************** */
+async function getArchiveData (account_id) {
+  try {
+    const result = await pool.query(
+      'SELECT * FROM message JOIN account ON message.message_from = account.account_id WHERE message_to = $1 AND message_archived = true',
       [account_id])
     return result.rows
   } catch (error) {
@@ -159,4 +173,4 @@ async function deleteMessage(account_id) {
   }
 }
 
-module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateAccount, changePassword, getMessageData, getMessageById, createMessage, changeMessageRead, changeMessageArchived, deleteMessage };
+module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateAccount, changePassword, getMessageData, getMessageById, createMessage, changeMessageRead, changeMessageArchived, deleteMessage, getArchiveData };

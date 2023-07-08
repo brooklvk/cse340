@@ -84,7 +84,7 @@ router.post(
 
 // Process send new message 
 router.post(
-  "/send-message",
+  "/send-message/:accountId",
   utilities.handleErrors(accountController.sendMessage)
 )
 
