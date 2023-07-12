@@ -27,7 +27,7 @@ router.get("/inbox/:accountId", utilities.checkLogin, utilities.handleErrors(acc
 router.get("/archive/:accountId", utilities.checkLogin, utilities.handleErrors(accountController.buildArchive));
 
 // Route for read a message 
-router.get("/message/:accountId", utilities.checkLogin, utilities.handleErrors(accountController.buildMessage));
+router.get("/message/:message_id", utilities.checkLogin, utilities.handleErrors(accountController.buildMessage));
 
 // Route for write new message 
 router.get("/new-message/:accountId", utilities.checkLogin, utilities.handleErrors(accountController.buildNewMessage));

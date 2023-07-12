@@ -80,17 +80,6 @@ async function buildMessagesByAccountId (req, res, next) {
 
   const table = await utilities.buildMessageTable(messageData)
   let nav = await utilities.getNav()
-  const accountId = res.locals.accountData.account_id 
-
-  const readData = await accountModel.getAllMessages(accountId)
-
-  let unread = 0
-  readData.forEach(message => {
-    if (!message.read) {
-      unread += 1
-    }
-  })
-  res.locals.unread = unread 
 
   try {
     res.render("account/inbox", {
@@ -100,7 +89,6 @@ async function buildMessagesByAccountId (req, res, next) {
       errors: null,
     })
   } catch (error) {
-    req.flash("notice", "No messages in inbox.")
     res.render("account/account-management", {
       title: "Manage Account",
       nav,
@@ -126,10 +114,18 @@ async function buildArchive(req, res, next) {
 
 // Deliver message view (access through inbox OR archive)
 async function buildMessage(req, res, next) {
-  const account_id = parseInt(req.params.accountId.slice(1,3))
-  const messageData = await accountModel.getMessageData(account_id)
+  const message_id = parseInt(req.params.message_id.slice(1,3))
+  const messageData = await accountModel.getMessageById(message_id)
   res.locals.messageData = messageData[0]
   let nav = await utilities.getNav()
+
+  if (messageData[0].message_read) {
+    res.locals.is_read = 'Unread'
+  } else {
+    res.locals.is_read = 'Read'
+  }
+
+  if (messageData)
   res.render("account/message", {
     title: messageData[0].message_subject,
     nav,
@@ -220,7 +216,7 @@ async function accountLogin(req, res) {
    return res.redirect("/account/account-management")
    }
   } catch (error) {
-   return new Error("Access Forbidden")
+    return new Error("Access Forbidden")
   }
 }
 
@@ -239,8 +235,6 @@ async function updateAccount(req, res) {
   )
   const accById = await accountModel.getAccountById(account_id)
   res.locals.accountData = accById
-  console.log(accById)
-  console.log(res.locals.accountData.account_firstname)
   if (accResult && accById) {
     utilities.deleteCookie;
     const accountData = await accountModel.getAccountById(account_id);
@@ -316,12 +310,52 @@ async function markRead(req, res) {
   let nav = await utilities.getNav()
   const message_id = parseInt(req.params.message_id.slice(1,3))
 
-  // get message data by message id and get message_read value 
-  let is_read = ''
+  const messageData = await accountModel.getMessageById(message_id)
+  res.locals.messageData = messageData[0]
+
+  let is_read = messageData[0].message_read
+  is_read = !is_read 
   const read = await accountModel.changeMessageRead(is_read, message_id)
 
-  if (read) {
+  const account_id = res.locals.accountData.account_id 
+  const allMessages = await accountModel.getAllMessages(account_id)
+  let numArchived = 0;
+  allMessages.forEach(message => {
+    if (message.message_archived) {
+      numArchived += 1
+      }
+    }
+  );
+  res.locals.numArchived = numArchived;
 
+  const inboxData = await accountModel.getMessageData(account_id)
+
+  const table = await utilities.buildMessageTable(inboxData)
+
+  if (read) {
+    if (is_read) {
+      is_read = 'Read'
+    } else {
+      is_read = 'Unread'
+    }
+    req.flash(
+      "notice",
+      `Message marked as ${is_read}.`
+    )
+    res.status(201).render("account/inbox", {
+      title: res.locals.accountData.account_firstname + " " + res.locals.accountData.account_lastname + " Inbox",
+      nav,
+      table,
+      errors: null,
+      numArchived
+    })
+  } else {
+    req.flash("notice", `Sorry, message ${is_read} failed.`)
+    res.status(501).render("account/message", {
+      title: messageData[0].message_subject,
+      nav,
+      errors: null,
+    })
   }
 }
 
@@ -332,15 +366,21 @@ async function markArchived(req, res) {
   const archived = await accountModel.changeMessageArchived(message_id)
   const messageData = await accountModel.getMessageById(message_id)
   res.locals.messageData = messageData[0]
+
+  const account_id = res.locals.accountData.account_id
+  const archiveData = await accountModel.getArchiveData(account_id)
   let numArchived = 0;
-  messageData.forEach(message => {
+  archiveData.forEach(message => {
     if (message.message_archived) {
       numArchived += 1
       }
     }
   );
   res.locals.numArchived = numArchived;
-  const table = await utilities.buildMessageTable(messageData)
+
+  const inboxData = await accountModel.getMessageData(account_id)
+  const table = await utilities.buildMessageTable(inboxData)
+
   if (archived) {
     req.flash(
       "notice",
@@ -375,7 +415,6 @@ async function sendMessage(req, res) {
   const message_received = new Date().toLocaleString()
   const newMessageData = await accountModel.createMessage(message_from, message_to, message_subject, message_body, message_received)
   const messageData = await accountModel.getMessageData(message_from)
-  console.log(messageData)
   const table = await utilities.buildMessageTable(messageData)
 
   const accountData = await accountModel.getAccountById(message_from)

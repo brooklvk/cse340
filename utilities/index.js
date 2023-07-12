@@ -95,57 +95,62 @@ Util.buildDetailGrid = async function(data) {
 * Build the message table HTML 
 * ************************************ */
 Util.buildMessageTable = async function(messageData) {
-  let table
-  table = '<table>'
-  table += '<tr><th>Received</th><th>Subject</th><th>From</th><th>Read</th></tr>'
+  
+  if (messageData.length > 0) {
+    let table
+    table = '<table>'
+    table += '<tr><th>Received</th><th>Subject</th><th>From</th><th>Read</th></tr>'
+    messageData.forEach(message => {
+      table += '<tr>'
 
-  messageData.forEach(message => {
-    table += '<tr>'
+      let received = message.message_received
+      received = received.toLocaleString()
 
-    let received = message.message_received
-    received = received.toLocaleString()
+      table += '<th>' + received + '</th>'
+      table += '<th>' + "<a href='/account/message/:" + message.message_id + "'>" + message.message_subject + '</a>' + '</th>'
+      table += '<th>' + message.account_firstname + " " + message.account_lastname + '</th>'
+      table += '<th>' + message.message_read + '</th>'
 
-    table += '<th>' + received + '</th>'
-    table += '<th>' + "<a href='/account/message/:" + message.message_to + "'>" + message.message_subject + '</a>' + '</th>'
-    table += '<th>' + message.account_firstname + " " + message.account_lastname + '</th>'
-    table += '<th>' + message.message_read + '</th>'
+      table += '</tr>' 
+    })  
 
-    table += '</tr>' 
-  })  
+    table += '</table>'
 
-  table += '</table>'
-
-  return table 
+    return table 
+  }
 }
 
 /* **************************************
 * Build the message archived table HTML 
 * ************************************ */
 Util.buildMessageArchived = async function(messageData) {
-  let archived
-  archived = '<table>'
-  archived += '<tr><th>Received</th><th>Subject</th><th>From</th><th>Read</th></tr>'
 
-  messageData.forEach(message => {
-    if (message.message_archived) {
-      archived += '<tr>'
+  if (messageData.length > 0) {
+  
+    let archived
+    archived = '<table>'
+    archived += '<tr><th>Received</th><th>Subject</th><th>From</th><th>Read</th></tr>'
 
-    let received = message.message_received
-    received = received.toLocaleString()
+    messageData.forEach(message => {
+      if (message.message_archived) {
+        archived += '<tr>'
 
-    archived += '<th>' + received + '</th>'
-    archived += '<th>' + "<a href='/account/message/:" + message.message_to + "'>" + message.message_subject + '</a>' + '</th>'
-    archived += '<th>' + message.account_firstname + " " + message.account_lastname + '</th>'
-    archived += '<th>' + message.message_read + '</th>'
+        let received = message.message_received
+        received = received.toLocaleString()
 
-    archived += '</tr>' 
-    }
-  });
+        archived += '<th>' + received + '</th>'
+        archived += '<th>' + "<a href='/account/message/:" + message.message_id + "'>" + message.message_subject + '</a>' + '</th>'
+        archived += '<th>' + message.account_firstname + " " + message.account_lastname + '</th>'
+        archived += '<th>' + message.message_read + '</th>'
 
-  archived += '</table>'
+        archived += '</tr>' 
+      }
+    });
 
-  return archived 
+    archived += '</table>'
 
+    return archived 
+  }
 }
 
 Util.getClassificationOption = async function(req, res, next) {

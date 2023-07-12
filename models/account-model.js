@@ -108,7 +108,7 @@ async function getArchiveData (account_id) {
 }
 
 /* *****************************
-* Return all message data (archived/not) by account id 
+* Return all message data by account id 
 * ***************************** */
 async function getAllMessages (account_id) {
   try {
@@ -151,10 +151,10 @@ async function createMessage(message_from, message_to, message_subject, message_
 /* *****************************
 *   Change a message (read)
 * *************************** */
-async function changeMessageRead(message_read, account_id) {
+async function changeMessageRead(message_read, message_id) {
   try {
-    const sql = "UPDATE public.message SET message_read = $1 WHERE account_id = $2"
-    const result = await pool.query(sql, [message_read, account_id])
+    const sql = "UPDATE public.message SET message_read = $1 WHERE message_id = $2"
+    const result = await pool.query(sql, [message_read, message_id])
     return result.rows
   } catch (error) {
     return error.message
