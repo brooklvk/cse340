@@ -36,7 +36,7 @@ async function buildManagement(req, res, next) {
 
   let unread = 0
   messageData.forEach(message => {
-    if (!message.read) {
+    if (!message.message_read) {
       unread += 1
     }
   })
@@ -429,7 +429,6 @@ async function sendMessage(req, res) {
   let nav = await utilities.getNav()
   const message_from = res.locals.accountData.account_id
   const { message_to, message_subject, message_body } = req.body 
-  console.log(message_to, message_subject, message_body)
   const message_received = new Date().toLocaleString()
   const newMessageData = await accountModel.createMessage(message_from, message_to, message_subject, message_body, message_received)
   const messageData = await accountModel.getMessageData(message_from)
@@ -446,7 +445,7 @@ async function sendMessage(req, res) {
   );
   res.locals.numArchived = numArchived;
 
-  if (newMessageData) {
+  if (newMessageData != "Error") {
     req.flash(
       "notice",
       `Message sent.`

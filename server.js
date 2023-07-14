@@ -99,14 +99,10 @@ console.log(`app listening on ${host}:${port}`)
 // In new-message view.ejs make option values locals.account_id s 
 // and only show the ones that aren't the current user 
 
-// In reply-message view.ejs: 
-// set select-recipient, subject, and body to locals when build page in controller (based on messageId)
-
 // Make delete button work 
-
 // Validate message subject and body when sent via new- or reply-message (post routes)
-
 //Also in acc management, #of unread messages needs to update more-? 
+//If message doesn't send, display error 
 
 // in utils.index
 // Util.getAccountOptions = async function (selected=null) {

@@ -143,7 +143,7 @@ async function createMessage(message_from, message_to, message_subject, message_
     const sql = "INSERT INTO public.message VALUES (default, $1, $2, $3, 'false', $4, 'false', $5)"
     return await pool.query(sql, [message_from, message_to, message_subject, message_body, message_received])
   } catch (error) {
-    return error.message
+    return "Error"
   }
   // INSERT INTO message VALUES (default, '14', '13', 'Test Subject', 'false', 'Test message', 'false', '2011-07-01 06:30:30');
 }
