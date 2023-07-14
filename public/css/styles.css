@@ -11,6 +11,11 @@
   font-family: sans-serif;
 }
 
+/* Flash msg */
+.flash {
+  background-color: yellow;
+}
+
 /* Header */
 
 header, nav {

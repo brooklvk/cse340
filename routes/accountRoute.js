@@ -32,6 +32,9 @@ router.get("/message/:message_id", utilities.checkLogin, utilities.handleErrors(
 // Route for write new message 
 router.get("/new-message/:accountId", utilities.checkLogin, utilities.handleErrors(accountController.buildNewMessage));
 
+// Route for write new message (reply)
+router.get("/reply-message/:message_id", utilities.checkLogin, utilities.handleErrors(accountController.buildReplyMessage));
+
 // Process the login request
 router.post(
   "/login",

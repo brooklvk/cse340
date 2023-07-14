@@ -133,11 +133,28 @@ async function buildMessage(req, res, next) {
   });
 }
 
-// Deliver new message view (access thru inbox page OR message page)
+// Deliver new message view (access thru inbox page)
 async function buildNewMessage(req, res, next) {
   let nav = await utilities.getNav()
   res.render("account/new-message", {
     title: "New Message",
+    nav,
+    errors: null,
+  });
+}
+
+// Deliver reply message view (access thru message page)
+async function buildReplyMessage(req, res, next) {
+  let nav = await utilities.getNav()
+  const message_id = parseInt(req.params.message_id.slice(1,3))
+  const messageData = await accountModel.getMessageById(message_id)
+  console.log(messageData)
+  res.locals.message_subject = messageData[0].message_subject 
+  res.locals.message_body = messageData[0].message_body 
+  res.locals.message_from = messageData[0].message_from
+  res.locals.message_to_name = messageData[0].account_firstname + " " + messageData[0].account_lastname
+  res.render("account/reply-message", {
+    title: "Reply Message",
     nav,
     errors: null,
   });
@@ -412,6 +429,7 @@ async function sendMessage(req, res) {
   let nav = await utilities.getNav()
   const message_from = res.locals.accountData.account_id
   const { message_to, message_subject, message_body } = req.body 
+  console.log(message_to, message_subject, message_body)
   const message_received = new Date().toLocaleString()
   const newMessageData = await accountModel.createMessage(message_from, message_to, message_subject, message_body, message_received)
   const messageData = await accountModel.getMessageData(message_from)
@@ -449,5 +467,4 @@ async function sendMessage(req, res) {
   }
 }
 
-
-module.exports = { buildLogin, buildRegister, buildManagement, buildUpdate, buildArchive, buildMessage, buildNewMessage, registerAccount, accountLogin, updateAccount, changePassword, buildMessagesByAccountId, markRead, markArchived, deleteMessage, sendMessage }
+module.exports = { buildLogin, buildRegister, buildManagement, buildUpdate, buildArchive, buildMessage, buildNewMessage, buildReplyMessage, registerAccount, accountLogin, updateAccount, changePassword, buildMessagesByAccountId, markRead, markArchived, deleteMessage, sendMessage }

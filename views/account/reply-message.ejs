@@ -22,20 +22,15 @@
 <p class="flash">All inputs are required.</p>
 
 <form action='/account/send-message/:<%= locals.accountData.accountId %>' method="post">
-  <label>To: <br></label>
-  <select name="message_to" id="select_to" required>
-    <option value="">Select a recipient: </option>
-    <option value="12">Basic Client</option>
-    <option value="13">Happy Employee</option>
-    <option value="14">Manager User</option>
-  </select>
+  <label>To: <input type="text" name="message_to_display" value="<%= locals.message_to_name %>" required></label>
+  <input type="hidden" name="message_to" value='<%= locals.message_from %>' required>
 
   <label>Subject: <br>
     <input type="text" name="message_subject" value="<%= locals.message_subject %>" required>
   </label>
 
   <label>Message: <br>
-    <textarea name="message_body" id="" cols="30" rows="10" required><%= locals.message_body %></textarea>
+    <textarea name="message_body" id="" cols="30" rows="10" required>/////// Previous Message /////// <%= locals.message_body %></textarea>
   </label>
 
   <button type="submit">Send</button>

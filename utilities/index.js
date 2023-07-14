@@ -167,11 +167,6 @@ Util.getClassificationOption = async function(req, res, next) {
   return opt 
 }
 
-// Util.getAccountOptions = async function (selected=null) {
-//   // make this getallaccounts?? 
-//   let accountData = await accountModel.getAccountById(account_id)
-// }
-
 /* ****************************************
 * Middleware to check token validity
 **************************************** */

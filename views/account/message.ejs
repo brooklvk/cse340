@@ -26,7 +26,7 @@
 <a class="return" href='/account/inbox/:<%= locals.accountData.account_id %>'>Return to Inbox</a>
 
 <form>
-  <button formaction='/account/message/:<%= locals.accountData.account_id %>' formmethod="get">Reply</button>
+  <button formaction='/account/reply-message/:<%= locals.messageData.message_id %>' formmethod="get">Reply</button>
   <button formaction='/account/mark-read/:<%= locals.messageData.message_id %>' formmethod="post">Mark As <%= locals.is_read %></button>
   <button formaction='/account/mark-archived/:<%= locals.messageData.message_id %>' formmethod="post">Archive Message</button>
   <button formaction='/account/delete-message/:<%= locals.messageData.message_id %>' formmethod="post">Delete Message</button>

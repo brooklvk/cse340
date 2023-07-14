@@ -127,7 +127,7 @@ async function getAllMessages (account_id) {
 async function getMessageById (message_id) {
   try {
     const result = await pool.query(
-      'SELECT * FROM message JOIN account ON message.message_to = account.account_id WHERE message_id = $1',
+      'SELECT * FROM message JOIN account ON message.message_from = account.account_id WHERE message_id = $1',
       [message_id])
     return result.rows
   } catch (error) {
