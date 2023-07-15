@@ -421,7 +421,48 @@ async function markArchived(req, res) {
 
 // Process delete message 
 async function deleteMessage(req, res) {
+  let nav = await utilities.getNav()
+  const message_id = parseInt(req.params.message_id.slice(1,3))
 
+  // const messageData = await accountModel.getMessageById(message_id)
+  // res.locals.messageData = messageData[0]
+
+  const deleted = await accountModel.deleteMessage(message_id)
+
+  const account_id = res.locals.accountData.account_id 
+  const allMessages = await accountModel.getAllMessages(account_id)
+  let numArchived = 0;
+  allMessages.forEach(message => {
+    if (message.message_archived) {
+      numArchived += 1
+      }
+    }
+  );
+  res.locals.numArchived = numArchived;
+
+  const inboxData = await accountModel.getMessageData(account_id)
+  const table = await utilities.buildMessageTable(inboxData)
+
+  if (deleted) {
+    req.flash(
+      "notice",
+      `Message deleted.`
+    )
+    res.status(201).render("account/inbox", {
+      title: res.locals.accountData.account_firstname + " " + res.locals.accountData.account_lastname + " Inbox",
+      nav,
+      table,
+      errors: null,
+      numArchived
+    })
+  } else {
+    req.flash("notice", `Sorry, message delete failed.`)
+    res.status(501).render("account/message", {
+      title: messageData[0].message_subject,
+      nav,
+      errors: null,
+    })
+  }
 }
 
 // Process send new message 

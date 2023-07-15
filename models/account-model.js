@@ -177,10 +177,10 @@ async function changeMessageArchived(message_id) {
 /* *****************************
 *   Delete a message 
 * *************************** */
-async function deleteMessage(account_id) {
+async function deleteMessage(message_id) {
   try {
-    const sql = "DELETE FROM public.message WHERE account_id = $1"
-    const result = await pool.query(sql, [account_id])
+    const sql = "DELETE FROM public.message WHERE message_id = $1"
+    const result = await pool.query(sql, [message_id])
     return result.rows
   } catch (error) {
     return error.message

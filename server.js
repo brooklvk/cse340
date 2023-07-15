@@ -98,14 +98,13 @@ console.log(`app listening on ${host}:${port}`)
 
 // In new-message view.ejs make option values locals.account_id s 
 // and only show the ones that aren't the current user 
-
-// Make delete button work 
-// Validate message subject and body when sent via new- or reply-message (post routes)
-//Also in acc management, #of unread messages needs to update more-? 
-//If message doesn't send, display error 
-
 // in utils.index
 // Util.getAccountOptions = async function (selected=null) {
 //   // make this getallaccounts?? 
 //   let accountData = await accountModel.getAccountById(account_id)
 // }
+
+//If message doesn't send, display error 
+
+
+// Validate message subject and body when sent via new- or reply-message (post routes)
