@@ -88,6 +88,8 @@ router.post(
 // Process send new message 
 router.post(
   "/send-message/:accountId",
+  validate.sendMessageRules(),
+  validate.checkMessageData,
   utilities.handleErrors(accountController.sendMessage)
 )
 

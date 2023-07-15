@@ -424,9 +424,6 @@ async function deleteMessage(req, res) {
   let nav = await utilities.getNav()
   const message_id = parseInt(req.params.message_id.slice(1,3))
 
-  // const messageData = await accountModel.getMessageById(message_id)
-  // res.locals.messageData = messageData[0]
-
   const deleted = await accountModel.deleteMessage(message_id)
 
   const account_id = res.locals.accountData.account_id 

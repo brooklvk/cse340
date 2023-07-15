@@ -217,4 +217,55 @@ validate.checkPasswordData = async (req, res, next) => {
   next()
 }
 
+validate.sendMessageRules = () => {
+  return [
+    // message subject 
+    body("message_subject")
+      .trim()
+      .isLength({ min: 3 })
+      .withMessage("Subject must be longer than two characters."), // on error this message is sent.
+
+    // message body 
+    body("message_body")
+      .trim()
+      .isLength({ min: 3 })
+      .withMessage("Body must be longer than two characters."), // on error this message is sent.
+  ]
+}
+
+validate.checkMessageData = async (req, res, next) => {
+  const { message_subject, message_body } = req.body
+  let errors = []
+  errors = validationResult(req)
+
+  const account_id = res.locals.accountData.account_id 
+  const allMessages = await accountModel.getAllMessages(account_id)
+  let numArchived = 0;
+  allMessages.forEach(message => {
+    if (message.message_archived) {
+      numArchived += 1
+      }
+    }
+  );
+  res.locals.numArchived = numArchived;
+
+  const inboxData = await accountModel.getMessageData(account_id)
+  const table = await utilities.buildMessageTable(inboxData)
+
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    res.render("account/inbox", {
+      title: res.locals.accountData.account_firstname + " " + res.locals.accountData.account_lastname + " Inbox",
+      nav,
+      table,
+      errors: null,
+      numArchived,
+      message_subject,
+      message_body
+    })
+    return
+  }
+  next()
+}
+
 module.exports = validate
