@@ -219,6 +219,12 @@ validate.checkPasswordData = async (req, res, next) => {
 
 validate.sendMessageRules = () => {
   return [
+    // recipient 
+    body("message_to")
+    .trim()
+    .isLength({max: 5})
+    .withMessage("The recipient must be valid."),
+
     // message subject 
     body("message_subject")
       .trim()
@@ -234,7 +240,7 @@ validate.sendMessageRules = () => {
 }
 
 validate.checkMessageData = async (req, res, next) => {
-  const { message_subject, message_body } = req.body
+  const { message_to, message_subject, message_body } = req.body
   let errors = []
   errors = validationResult(req)
 
@@ -252,7 +258,7 @@ validate.checkMessageData = async (req, res, next) => {
   const inboxData = await accountModel.getMessageData(account_id)
   const table = await utilities.buildMessageTable(inboxData)
 
-  if (!errors.isEmpty()) {
+  if (!errors.isEmpty() && typeof(message_to)==typeof(0)) {
     let nav = await utilities.getNav()
     res.render("account/inbox", {
       title: res.locals.accountData.account_firstname + " " + res.locals.accountData.account_lastname + " Inbox",

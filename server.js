@@ -95,16 +95,3 @@ const port = process.env.PORT
 app.listen(port, () => {
 console.log(`app listening on ${host}:${port}`)
 });
-
-// In new-message view.ejs make option values locals.account_id s 
-// and only show the ones that aren't the current user 
-// in utils.index
-// Util.getAccountOptions = async function (selected=null) {
-//   // make this getallaccounts?? 
-//   let accountData = await accountModel.getAccountById(account_id)
-// }
-
-//If message doesn't send, display error 
-
-
-// Validate message subject and body when sent via new- or reply-message (post routes)
